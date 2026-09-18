@@ -1,0 +1,16 @@
+/* Esto es un comentarion en CSS*/
+body
+ {
+bacrkound-color: #fff9f5; 
+}
+#Acerca-de-mi{
+    background-color: #f6e7d8;
+}
+.menu_option{
+    bacround-color: #d98ba5;
+    color: #8f4a62;
+    font-famyly: Georgia, 'Times New Roman', Times, serif;
+}
+.menu_option:hover{
+    backround-color: #efc6d4;
+}
