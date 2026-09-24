@@ -11,5 +11,5 @@ periodo: septiembre - Diciembre 2026
 |---|---|---|---|---|
 |1.| Metodología de evaluación de la materia | Transcribir en libreta y comprender la metodología y fechas de evaluación de la asignatura. |5| 🟢concluida. |
 |2. | Mi primer Pagina Web. | Codificar la primer pagina web con HTML puro, sin estilos ni funcionalidades. |10| 🟢 Concluida. |
-
+|3. | Mi primer Pagina Web. | Codificar la primer pagina web con HTML puro, sin estilos ni funcionalidades. |10| 🟢 Concluida. |
 
