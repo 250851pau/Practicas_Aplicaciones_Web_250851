@@ -15,26 +15,25 @@ bacrkound-color: #fff9f5;
     backround-color: #efc6d4;
 }*/
 
-*{
+* {
     box-sizing: border-box;
 }
-html{
-    scroll-behavior: smooth; ;
+
+html {
+    scroll-behavior: smooth;
 }
 
-body{
-    margin: 20px;
+body {
+    margin: 0; /* Cambiado a 0 para que el fondo abarque toda la pantalla */
+    padding-top: 70px; /* Evita que el menú fijo tape el inicio de la página */
     font-family: Arial, Helvetica, sans-serif;
     background: #d98ba5;
-    color:#520f0f;
+    color: #520f0f;
     line-height: 1.6;
-    /*border-color: red;
-    border-style:solid;
-    border-width: 15px;
-    padding: 50px;*/
 }
 
-nav{
+/* NAVEGACIÓN */
+nav {
     position: fixed;
     top: 0;
     left: 0;
@@ -43,34 +42,38 @@ nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(15,23,42, 0.45);
+    background: rgba(15, 23, 42, 0.45);
     backdrop-filter: blur(15px);
-    border-bottom: 1px solid rgba(255,255,255,0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     z-index: 1000;
-    transform: 0.3s;
+    transition: 0.3s;
 }
 
-nav h2{
+nav h2 {
     color: white;
 }
-nav ul{
+
+nav ul {
     list-style: none;
     display: flex;
     gap: 25px;
+    margin: 0;
+    padding: 0;
 }
+
 nav a {
     color: white;
     text-decoration: none;
     font-weight: bold;
     transition: 0.3s;
 }
+
 nav a:hover { 
     color: tomato;
 }
 
-
-
-.parallax{
+/* SECCIONES Y PARALLAX */
+.parallax {
     min-height: 100vh;
     background-size: cover;
     background-position: center;
@@ -81,60 +84,80 @@ nav a:hover {
     justify-content: center;
     padding: 80px 20px;
     position: relative;
-
 }
 
-.parallax:before{
+.parallax::before {
     content: "";
-    position : absolute;
+    position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.38);
+    background: rgba(0, 0, 0, 0.38);
 }
 
-.parallax >*{
+.parallax > * {
     position: relative;
     z-index: 2;
-
 }
+
+/* RUTAS CORREGIDAS: Usan ../ para salir de la carpeta CSS */
 .parallax-1 {
-    background-image: url1();
-
+    background-image: url("../assets/fondo1.jpg");
 }
 
-.parallax-2{
-    background-image: url2();
+.parallax-2 {
+    background-image: url("../assets/fondo2.jpg");
 }
 
-.parallax-3{
-    background-image: url3();
+.parallax-3 {
+    background-image: url("../assets/fondo3.jpg");
 }
 
-.parallax-4{
-    background-image: url4();
+.parallax-4 {
+    background-image: url("../assets/fondo4.jpg");
 }
 
-
-
-.profile-img{
-    width: clamp(180px,20vmin,300px);
+/* ESTILOS DE COMPONENTES */
+.profile-img {
+    width: clamp(180px, 20vmin, 300px);
     height: clamp(180px, 20vmin, 300px);
-    
-    object-fit:cover;
-    border-radius:50px;
-
-    display:block;
-
-    box-shadow: 0 10px 30px rgba(255,255,255,0.4);
-
+    object-fit: cover;
+    border-radius: 50%; /* Cambiado a 50% para hacerlo un círculo perfecto */
+    display: block;
+    margin: 0 auto 15px auto;
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.4);
 }
 
-.glass{
-    background:rgba(20,30,50,0.38);
-    color:#d98ba5;
-
+.glass {
+    background: rgba(20, 30, 50, 0.38);
+    color: #ffffff;
     backdrop-filter: blur(14px);
-    border: 1px solid rgba(255,255,255,0.25);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 24px;
-    box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+    padding: 30px;
+    text-align: center;
+    max-width: 600px;
+}
+
+.boton {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #d98ba5;
+    color: #520f0f;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.boton:hover {
+    background: #ffffff;
+}
+
+/* Espaciado de las secciones inferiores */
+section {
+    padding: 60px 20px;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
