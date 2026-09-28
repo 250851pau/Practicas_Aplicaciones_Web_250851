@@ -159,12 +159,16 @@ nav a:hover {
 }
 
 /* Espaciado de las secciones inferiores */
-section {
+.section {
     padding: 60px 20px;
     max-width: 1000px;
     margin: 0 auto;
 }
-
+.section h2{
+    font-size:2.4em;
+    margin-bottom: 45px;
+    text-align:center;
+}
 /*CONTENEDORES*/
 
 .contenedor
