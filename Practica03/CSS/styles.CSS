@@ -24,8 +24,8 @@ html {
 }
 
 body {
-    margin: 0; /* Cambiado a 0 para que el fondo abarque toda la pantalla */
-    padding-top: 70px; /* Evita que el menú fijo tape el inicio de la página */
+    margin: 0;
+    padding-top: 70px;
     font-family: Arial, Helvetica, sans-serif;
     background: #d98ba5;
     color: #520f0f;
@@ -82,7 +82,7 @@ nav a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 80px 20px;
+    padding: 90px 20px;
     position: relative;
 }
 
@@ -98,7 +98,6 @@ nav a:hover {
     z-index: 2;
 }
 
-/* RUTAS CORREGIDAS: Usan ../ para salir de la carpeta CSS */
 .parallax-1 {
     background-image: url("../assets/fondo1.jpg");
 }
@@ -120,7 +119,7 @@ nav a:hover {
     width: clamp(180px, 20vmin, 300px);
     height: clamp(180px, 20vmin, 300px);
     object-fit: cover;
-    border-radius: 50%; /* Cambiado a 50% para hacerlo un círculo perfecto */
+    border-radius: 50%;
     display: block;
     margin: 0 auto 15px auto;
     flex-shrink: 0;
@@ -135,11 +134,13 @@ nav a:hover {
     border-radius: 24px;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
     padding: 30px;
-    text-align: center;
-    max-width: 800px;
+    text-align: left; /* Alinea el texto a la izquierda */
+    max-width: 900px;
     display: flex;
+    flex-direction: row; /* Coloca la foto a la izquierda y el texto a la derecha */
     align-items: center;
-    grap: 30px;
+    justify-content: center;
+    gap: 30px;
 }
 
 .boton {
@@ -158,58 +159,116 @@ nav a:hover {
     background: #ffffff;
 }
 
-/* Espaciado de las secciones inferiores */
 .section {
     padding: 60px 20px;
     max-width: 1000px;
     margin: 0 auto;
 }
-.section h2{
-    font-size:2.4em;
+
+.section h2 {
+    font-size: 2.4em;
     margin-bottom: 45px;
-    text-align:center;
+    text-align: center;
 }
-/*CONTENEDORES*/
 
-.contenedor
-{
+/* CONTENEDORES */
+.contenedor {
     max-width: 1100px;
-    margin:auto;
+    margin: auto;
+    padding: 0 20px;
 }
 
-.card
-{
+.card {
     background: rgb(245, 191, 211);
-    color:#222;
+    color: #222;
     padding: 30px;
     border-radius: 20px;
     box-shadow: 0 12px 40px rgba(0,0,0,0.12);
-    transition:0.3s;
+    transition: 0.3s;
 }
 
-.card:hover
-{
+.card:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 40px rgba(30,41,59,0.80);
 }
 
-
-/*============================================*/
-/*DATOS PERSONALES*/
-/*============================================*/
-
-.datos
-{
-    margin-top: 30;
+/* DATOS PERSONALES */
+.datos {
+    margin-top: 30px; /* Corrección de "30" */
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap:20px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
 }
-.datos article
-{
-    margin-top: 30px;
+
+.datos article {
+    padding: 15px;
     text-align: center;
     background: rgb(245, 191, 211);
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, .08);
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* IMÁGENES */
+.card img {
+    width: 100%;
+    max-height: 280px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* SECCIONES */
+.seccion {
+    min-height: 80vh;
+    padding: 100px 8%;
+}
+
+.seccion h2 {
+    text-align: center;
+    font-size: 2.4rem;
+    margin-bottom: 45px;
+}
+
+/* REDES SOCIALES */
+.redes {
+    text-align: center;
+}
+
+.redes-sociales {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.redes-sociales a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    min-width: 120px;
+    padding: 18px;
+    color: #ffffff;
+    background: linear-gradient(145deg, #1e293b, #334155);
+    border-radius: 18px;
+    text-decoration: none;
+    box-shadow: 0 12px 25px rgba(0,0,0, 0.2);
+    transition: 0.3s;
+}
+
+.redes-sociales a:hover {
+    transform: translateY(-8px) scale(1.05);
+    background: linear-gradient(145deg, #2563eb, #7c3aed); /* Corrección de "#" */
+}
+
+.redes-sociales svg {
+    width: 36px;
 }
