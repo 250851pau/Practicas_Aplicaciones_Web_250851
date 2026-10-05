@@ -113,6 +113,9 @@ nav a:hover {
 .parallax-4 {
     background-image: url("../assets/fondo4.jpg");
 }
+.parallax-5{
+    background-image: url("../assets/fondo5.jpg");
+}
 
 /* ESTILOS DE COMPONENTES */
 .profile-img {
@@ -194,7 +197,7 @@ nav a:hover {
 
 /* DATOS PERSONALES */
 .datos {
-    margin-top: 30px; /* Corrección de "30" */
+    margin-top: 30px; 
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
@@ -211,9 +214,13 @@ nav a:hover {
 /* GRID */
 .grid {
     display: grid;
+
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
     gap: 25px;
+
     max-width: 1200px;
+
     margin: auto;
 }
 
@@ -271,4 +278,7 @@ nav a:hover {
 
 .redes-sociales svg {
     width: 36px;
+}
+.cinco{
+    grid-template-columns: repeat(5, 1fr);
 }
