@@ -86,6 +86,12 @@ nav a:hover {
     position: relative;
 }
 
+/* Regla para posicionar el cuadro Hero a la izquierda */
+#inicio.parallax {
+    justify-content: flex-start;
+    padding-left: 5%;
+}
+
 .parallax::before {
     content: "";
     position: absolute;
@@ -113,7 +119,8 @@ nav a:hover {
 .parallax-4 {
     background-image: url("../assets/fondo4.jpg");
 }
-.parallax-5{
+
+.parallax-5 {
     background-image: url("../assets/fondo5.jpg");
 }
 
@@ -124,7 +131,7 @@ nav a:hover {
     object-fit: cover;
     border-radius: 50%;
     display: block;
-    margin: 0 auto 15px auto;
+    margin: 0 0 15px 0;
     flex-shrink: 0;
     box-shadow: 0 10px 30px rgba(255, 255, 255, 0.4);
 }
@@ -137,12 +144,12 @@ nav a:hover {
     border-radius: 24px;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
     padding: 30px;
-    text-align: left; /* Alinea el texto a la izquierda */
+    text-align: left;
     max-width: 900px;
     display: flex;
-    flex-direction: row; /* Coloca la foto a la izquierda y el texto a la derecha */
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 30px;
 }
 
@@ -214,13 +221,9 @@ nav a:hover {
 /* GRID */
 .grid {
     display: grid;
-
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-
     gap: 25px;
-
     max-width: 1200px;
-
     margin: auto;
 }
 
@@ -273,12 +276,91 @@ nav a:hover {
 
 .redes-sociales a:hover {
     transform: translateY(-8px) scale(1.05);
-    background: linear-gradient(145deg, #2563eb, #7c3aed); /* Corrección de "#" */
+    background: linear-gradient(145deg, #2563eb, #7c3aed);
 }
 
 .redes-sociales svg {
     width: 36px;
 }
-.cinco{
+
+.cinco {
     grid-template-columns: repeat(5, 1fr);
+}
+/* ========================================== */
+/* CARRUSEL DE FAVORITOS Y REPRODUCTOR AUDIO  */
+/* ========================================== */
+
+.carrusel-contenedor {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carrusel-track {
+    width: 100%;
+    position: relative;
+    min-height: 480px;
+}
+
+.carrusel-item {
+    display: none; /* Oculta todas las tarjetas por defecto */
+    text-align: center;
+}
+
+.carrusel-item.active {
+    display: block; /* Muestra solo la tarjeta activa */
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Botones / Flechas de navegación */
+.carrusel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(30, 41, 59, 0.75);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 10px 18px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    transition: 0.3s;
+}
+
+.carrusel-btn:hover {
+    background: #d98ba5;
+    color: #520f0f;
+}
+
+.carrusel-btn.prev {
+    left: -60px;
+}
+
+.carrusel-btn.next {
+    right: -60px;
+}
+
+/* Estilos de la imagen dentro de la tarjeta */
+.carrusel-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+/* Estilo personalizado para el reproductor de audio */
+.reproductor-audio {
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 30px;
 }
