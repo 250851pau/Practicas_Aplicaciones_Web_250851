@@ -99,6 +99,12 @@
        <label for="codigoPostal">Código Postal: </label>
        <input type="text" id="codigoPostal" placeholder="01234">
        </fieldset>
+       
+       
+
+       
+
+       
     <br>
     <!--======================================================================-->
     <!--Se avilitara con JS para agregarle la funcion para peticion a base de datos -->
@@ -169,5 +175,114 @@
 
     </main>
     
+    <fieldset>
+        <legend>Configuracion de mi cuenta/perdil: </legend>
+        <label for="userPhoto">foto de perfil: </label>
+        <input type="file" id="userPhoto" accept="image/*">
+        
+        <br>
+        <input type="image" id="buttonNext" src="assets/next.gif" alt="Siguente" width="50" height="50">
+        <input type="hidden" id="userId" value="25XXXX">
+       </fieldset>
+
+       <fieldset>
+        <legend>datos fiscales</legend>
+        <label for="rfc">registro federal de causentes (RFC): </label>
+        <input type="text" id="rfc" maxlength="13" placeholder="RAHMXXXXXXXX">
+        <br>
+        <label for="fiscalSituation">constancia de situacion fiscal: </label>
+        <input type="file" id="fiscalSituation" accept=".pdf">
+        <input type="hidden" id="userId" value="25XXXX">
+       </fieldset> 
+        
+       <fieldset>
+        <legend>Solicitud de cita: </legend>
+        <label for="dateAppoiment">fecha de la cita:</label>
+        <input type="datetime-local" id="dateAppoiment">
+        <br>
+        <label for="descriptionText">Descripcion de la cita: </label>
+        <textarea id="descriptionText"></textarea>
+        <br> 
+       </fieldset>
+
+       <fieldset>
+        <legend>Solicitud de Herramientas y refacciones para servicio mecanico: </legend>
+        <label> for="resourceCategory">Categoria de recurso </label>
+        <input type="radio" id="resourceRefaction" name="resourceCategory" value="refacrion">refaction
+        <input type="radio" id="resourceTool" name="resourceCategory" value="tool">Herramienta
+        <br>
+        <label for="resourceCategoryPieza">Pieza</label>
+        <label for="toolName">Elige la pieza:</label> 
+        <select>
+            <optgroup label="piezas de Motor">
+                <option valuye="bujia">Bujia</option>
+                <option value="filtro_aceite">Filtro de aceite</option>
+                <option value="banda_distribucion">Banda de distribucion</option>
+            </optgroup>
+            <optgroup label="piezas de Transmision">
+                <option valuye="disco_ambrague">Disco de embrague</option>
+                <option value="collarin">Collarin de embrague</option>
+                <option value="junta_homocintetica">Junta homocintetica</option>
+                <option value="semieje">Semieje de transmision</option> 
+            </optgroup>
+            <optgroup label="Piezas de suspension">
+                <option value="amortiguador">Amortiguador</option>
+                <option value="rotula">Rotula de suspension</option>
+            </optiongroup>
+            <optgroup label="llaves y herramientas especializadas">
+            <optgroup>
+                <option value="llave_combinada">Llave combinada</option>
+                <option value="llave_torx">Llave torx</option>
+                <option value="llave_dinamometrica">Llave dinamometrica</option>
+                <option value="extractor_poleas">Extractor de poleas</option>
+                <option value="compresor_resortes">Compresor de resortes</option>
+                <option value="scanner_obd2">Escaner automotriz OBD-II</option>
+            </optgroup>
+        </select>
+
+        <form>
+        <legend>Visualizacion de citas</legend>
+        <br>
+    <label for="mesCita">Fecha de la cita:</label>
+    <input type="month" id="mesCita">
+    <button type="verCita">mostrar</button>
+    </form>
+    <br>
+    <h4>las citas se programadas para el mes elegido es :</h4>
+    <br>
+    <table style="border: 1px solid black">
+    <tr>
+        <th style="border: 1px solid black">No.</th>
+        <th style="border: 1px solid black">Nombre</th>
+        <th style="border: 1px solid black">Descripción</th>
+        <th style="border: 1px solid black">Fecha Programada</th>
+        <th style="border: 1px solid black">Estatus Actual</th>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black">1.</td>
+        <td style="border: 1px solid black">Cita de entrega de unidad reparada con el cliente: Mauricio Mejía, Unidad: Volkswagen, Jetta 2020</td>
+        <td style="border: 1px solid black">Se realizo un cambio de bujías, la unidad esta lista para entrega</td>
+        <td style="border: 1px solid black">10 de Octubre de 2026</td>
+        <td style="border: 1px solid black">Atendida</td>
+    </tr>
+
+    <tr>
+        <td style="border: 1px solid black">2.</td>
+        <td style="border: 1px solid black">Cita de valoración con el cliente: Marco A. Ramírez, Unidad: Renault, Duster 2014</td>
+        <td style="border: 1px solid black">El cliente solicita una revisión del cuerpo de aceleración de la unidad para posible mantenimiento correctivo.</td>
+        <td style="border: 1px solid black">16 de Octubre de 2026</td>
+        <td style="border: 1px solid black">Programada</td>
+    </tr>
+    <tr>
+        <td style="border: 1px solid black">3.</td>
+        <td style="border: 1px solid black"></td>
+        <td style="border: 1px solid black">A la unidad se le hicieron cambio de bujías, pero el cliente reporta un sonido extraño.</td>
+        <td style="border: 1px solid black">17 de Octubre de 2026</td>
+        <td style="border: 1px solid black">Programada</td>
+    </tr>
+    <tr>
+       </fieldset>
+
+       
 </body>
 </html>
