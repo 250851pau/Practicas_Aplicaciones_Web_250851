@@ -1,0 +1,240 @@
+/* =======================================================
+   ESTILOS GENERALES Y VARIABLES
+   ======================================================= */
+:root {
+    --color-primario: #1e3a8a; /* Azul oscuro profesional */
+    --color-secundario: #f97316; /* Naranja mecánico para botones/detalles */
+    --color-fondo: #f1f5f9; /* Gris muy claro para el fondo */
+    --color-texto: #334155; /* Gris oscuro para lectura cómoda */
+    --color-borde: #cbd5e1; /* Gris claro para los bordes */
+    --fondo-tarjeta: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+    padding-bottom: 40px;
+}
+
+/* =======================================================
+   CABECERA (HEADER)
+   ======================================================= */
+header {
+    background-color: var(--color-primario);
+    color: #ffffff;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 5px solid var(--color-secundario);
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 2.8em;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+header h2 {
+    font-size: 1.3em;
+    color: #bae6fd;
+    font-weight: 400;
+}
+
+header p {
+    font-size: 0.95em;
+    opacity: 0.8;
+    margin-top: 10px;
+}
+
+/* =======================================================
+   CONTENEDOR PRINCIPAL
+   ======================================================= */
+main, form {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* =======================================================
+   FORMULARIOS Y FIELDSETS
+   ======================================================= */
+fieldset {
+    background-color: var(--fondo-tarjeta);
+    border: 1px solid var(--color-borde);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+legend {
+    background-color: var(--color-primario);
+    color: #ffffff;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 1.1em;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* =======================================================
+   ETIQUETAS Y CAMPOS DE ENTRADA (INPUTS)
+   ======================================================= */
+label {
+    display: inline-block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #475569;
+    font-size: 0.95em;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="url"],
+input[type="date"],
+input[type="time"],
+input[type="month"],
+input[type="week"],
+input[type="datetime-local"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid var(--color-borde);
+    border-radius: 6px;
+    font-size: 1em;
+    font-family: inherit;
+    background-color: #f8fafc;
+    transition: all 0.3s ease;
+}
+
+/* Efecto al hacer clic en los inputs */
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* =======================================================
+   CHECKBOXES Y RADIOS
+   ======================================================= */
+input[type="checkbox"], 
+input[type="radio"] {
+    margin-right: 8px;
+    transform: scale(1.2);
+    accent-color: var(--color-primario);
+    cursor: pointer;
+}
+
+/* =======================================================
+   BOTONES
+   ======================================================= */
+input[type="submit"], 
+input[type="reset"], 
+button {
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-top: 15px;
+    margin-right: 10px;
+}
+
+input[type="submit"]:hover, 
+button:hover {
+    background-color: #1e40af;
+    transform: translateY(-2px);
+}
+
+/* Botón de limpiar formulario */
+input[type="reset"] {
+    background-color: #64748b;
+}
+
+input[type="reset"]:hover {
+    background-color: #475569;
+}
+
+/* Botón deshabilitado */
+input[type="submit"]:disabled {
+    background-color: #94a3b8;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* =======================================================
+   TABLAS (Para la visualización de citas)
+   ======================================================= */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: var(--fondo-tarjeta);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Sobrescribe los bordes inline (style="border: 1px...") de tu HTML */
+table, th, td {
+    border: none !important; 
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0 !important;
+}
+
+th {
+    background-color: var(--color-primario);
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    letter-spacing: 0.5px;
+}
+
+tr:hover {
+    background-color: #f8fafc;
+}
+
+tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* =======================================================
+   TÍTULOS SECUNDARIOS (H4)
+   ======================================================= */
+h4 {
+    color: var(--color-primario);
+    margin-top: 25px;
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    border-bottom: 2px solid var(--color-borde);
+    padding-bottom: 5px;
+}
