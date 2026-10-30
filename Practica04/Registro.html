@@ -1,17 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MecaGest:Formulario de Registro de Nuevos Usuarios - 250954</title>
+    <title>MecaGest - Sistema de Gestión Mecánica</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --color-primario: #1e3a8a; /* Azul oscuro profesional */
-            --color-secundario: #f97316; /* Naranja mecánico */
-            --color-fondo: #f1f5f9; 
+            --color-primario: #1e3a8a;
+            --color-secundario: #f97316;
+            --color-fondo: #f8fafc; 
             --color-texto: #334155; 
-            --color-borde: #cbd5e1; 
+            --color-borde: #e2e8f0; 
             --fondo-tarjeta: #ffffff;
+            --sidebar-width: 260px;
         }
 
         * {
@@ -25,69 +28,151 @@
             background-color: var(--color-fondo);
             color: var(--color-texto);
             line-height: 1.6;
-            padding-bottom: 40px;
+            display: flex;
+            min-height: 100vh;
         }
 
-        header {
+        /* --------------------------------------------------
+           NAVBAR / SIDEBAR (MENÚ A LA IZQUIERDA)
+        -------------------------------------------------- */
+        .sidebar {
+            width: var(--sidebar-width);
             background-color: var(--color-primario);
             color: #ffffff;
-            padding: 30px 20px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        .sidebar-brand {
+            padding: 25px 20px;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-bottom: 5px solid var(--color-secundario);
-            margin-bottom: 40px;
+            border-bottom: 3px solid var(--color-secundario);
         }
 
-        header h1 {
-            font-size: 2.8em;
-            margin-bottom: 5px;
+        .sidebar-brand h1 {
+            font-size: 1.8em;
             letter-spacing: 1px;
+            color: #ffffff;
         }
 
-        header h2 {
-            font-size: 1.3em;
+        .sidebar-brand p {
+            font-size: 0.8em;
             color: #bae6fd;
-            font-weight: 400;
+            margin-top: 5px;
         }
 
-        header p {
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 0;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .sidebar-menu li a {
+            display: flex;
+            align-items: center;
+            padding: 14px 25px;
+            color: #93c5fd;
+            text-decoration: none;
+            font-weight: 500;
             font-size: 0.95em;
-            opacity: 0.8;
-            margin-top: 10px;
+            transition: all 0.3s ease;
         }
 
-        main, form {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 20px;
+        .sidebar-menu li a:hover, 
+        .sidebar-menu li a.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border-left: 4px solid var(--color-secundario);
+        }
+
+        .sidebar-menu li a i {
+            margin-right: 12px;
+            font-size: 1.1em;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* --------------------------------------------------
+           CONTENEDOR PRINCIPAL
+        -------------------------------------------------- */
+        .main-wrapper {
+            margin-left: var(--sidebar-width);
+            flex-grow: 1;
+            padding: 30px;
+            max-width: calc(100% - var(--sidebar-width));
+        }
+
+        header.top-header {
+            background-color: var(--fondo-tarjeta);
+            padding: 20px 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            margin-bottom: 30px;
+            border-left: 6px solid var(--color-primario);
+        }
+
+        header.top-header h2 {
+            font-size: 1.6em;
+            color: var(--color-primario);
+        }
+
+        header.top-header p {
+            color: #64748b;
+            font-size: 0.9em;
+        }
+
+        /* --------------------------------------------------
+           LAYOUT DE 2 COLUMNAS (GRID)
+        -------------------------------------------------- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .full-width {
+            grid-column: span 2;
         }
 
         fieldset {
             background-color: var(--fondo-tarjeta);
             border: 1px solid var(--color-borde);
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         legend {
             background-color: var(--color-primario);
             color: #ffffff;
-            padding: 8px 20px;
-            border-radius: 5px;
+            padding: 6px 16px;
+            border-radius: 6px;
             font-weight: 600;
-            font-size: 1.1em;
+            font-size: 0.95em;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
+        /* Elementos de Formulario */
+        .form-group {
+            margin-bottom: 15px;
+        }
+
         label {
-            display: inline-block;
-            margin-top: 15px;
-            margin-bottom: 5px;
+            display: block;
+            margin-bottom: 6px;
             font-weight: 600;
             color: #475569;
-            font-size: 0.95em;
+            font-size: 0.9em;
         }
 
         input[type="text"],
@@ -100,14 +185,14 @@
         input[type="month"],
         input[type="week"],
         input[type="datetime-local"],
+        input[type="file"],
         select,
         textarea {
             width: 100%;
-            padding: 12px;
-            margin-bottom: 10px;
+            padding: 10px 14px;
             border: 1px solid var(--color-borde);
-            border-radius: 6px;
-            font-size: 1em;
+            border-radius: 8px;
+            font-size: 0.95em;
             font-family: inherit;
             background-color: #f8fafc;
             transition: all 0.3s ease;
@@ -117,20 +202,38 @@
             outline: none;
             border-color: var(--color-primario);
             background-color: #ffffff;
-            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.2);
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
         }
 
         textarea {
             resize: vertical;
-            min-height: 100px;
+            min-height: 90px;
+        }
+
+        .inline-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
         }
 
         input[type="checkbox"], 
         input[type="radio"] {
-            margin-right: 8px;
-            transform: scale(1.2);
+            transform: scale(1.1);
             accent-color: var(--color-primario);
             cursor: pointer;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
         }
 
         input[type="submit"], 
@@ -139,20 +242,18 @@
             background-color: var(--color-primario);
             color: white;
             border: none;
-            padding: 12px 25px;
-            border-radius: 6px;
+            padding: 12px 20px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 1em;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.1s ease;
-            margin-top: 15px;
-            margin-right: 10px;
+            font-size: 0.95em;
+            font-weight: 600;
+            transition: all 0.2s ease;
         }
 
         input[type="submit"]:hover, 
         button:hover {
             background-color: #1e40af;
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
 
         input[type="reset"] {
@@ -163,409 +264,434 @@
             background-color: #475569;
         }
 
-        input[type="submit"]:disabled {
-            background-color: #94a3b8;
-            cursor: not-allowed;
-            transform: none;
+        /* Estilos de mensaje de edad */
+        .mensaje-edad {
+            display: block;
+            margin-top: 6px;
+            font-weight: 600;
+            font-size: 0.85em;
+        }
+        .mayor-edad {
+            color: #16a34a; /* Verde */
+        }
+        .menor-edad {
+            color: #dc2626; /* Rojo */
+        }
+
+        /* TABLA DE CITAS */
+        .table-responsive {
+            overflow-x: auto;
+            margin-top: 15px;
         }
 
         table {
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
+            border-collapse: separate;
+            border-spacing: 0;
             background-color: var(--fondo-tarjeta);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             border-radius: 8px;
             overflow: hidden;
-        }
-
-        table, th, td {
-            border: none !important; 
+            border: 1px solid var(--color-borde);
         }
 
         th, td {
-            padding: 15px;
+            padding: 12px 15px;
             text-align: left;
-            border-bottom: 1px solid #e2e8f0 !important;
+            border-bottom: 1px solid var(--color-borde);
         }
 
         th {
-            background-color: var(--color-primario);
-            color: #ffffff;
+            background-color: #f1f5f9;
+            color: #334155;
             font-weight: 600;
             text-transform: uppercase;
-            font-size: 0.85em;
-            letter-spacing: 0.5px;
+            font-size: 0.75em;
         }
 
-        tr:hover {
-            background-color: #f8fafc;
+        .badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            font-weight: 600;
         }
+        .badge-success { background-color: #dcfce7; color: #166534; }
+        .badge-warning { background-color: #fef9c3; color: #854d0e; }
+        .badge-danger { background-color: #fee2e2; color: #991b1b; }
 
-        tr:last-child td {
-            border-bottom: none !important;
-        }
-
-        h4 {
+        h4.section-title {
             color: var(--color-primario);
-            margin-top: 25px;
-            margin-bottom: 15px;
+            margin: 30px 0 15px 0;
             font-size: 1.2em;
-            border-bottom: 2px solid var(--color-borde);
-            padding-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 992px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            .full-width {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; position: relative; height: auto; }
+            .main-wrapper { margin-left: 0; max-width: 100%; padding: 15px; }
         }
     </style>
-    <!-- AQUÍ TERMINA EL CSS -->
-
 </head>
 <body>
-</head>
-<body>
-    <header>
-        <h1>MecaGest</h1>
-        <h2>Registro de Nuevos Usuarios</h2>
-        <p>Complete los campos para solicitar una cuenta en el sistema</p>
 
-    </header>
-    <main>
-        <!--Action:accción-->
-        <!--Post:Intgresar datos-->
-        <!--GetPosr:Jalar informacion Precargada/Tag semantico (no se ven/no renderizan )-->
-        <form action="" method="Post">
-            <!--Tag para ingresar-->
-            <fieldset>
-                <legend>Datos Personales</legend>
-            <label for="Titulo">Titulo:</label>
-            <select id="Titulo">
-                <option value="Sr">Sr</option>
-                <option value="Sra">Sra</option>
-                <option value="Srta">Srta</option>
-                <option value="Dr">Dr</option>
-                <option value="Dra">Dra</option>
-            </select>
-            <br>
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" placeholder="Paulina Rodriguez " required>
-            <br>
-            <!--=======================================================================-->
-            <label for="APaterno">Apellido Paterno:</label>
-            <input type="text" id="APaterno" placeholder="Rodriguez" required>
-            <br>
-            <!--===========================================================================-->
-            <label for="Genenero">Genero:</label>
-            <select id="Genero">
-                <option value="F">Femenino</option>
-                <option value="M">Masculino</option>
-                <option value="X">Prefiero no decirlo</option>
-            </select>
-            <!--=======================================================================-->
-            <!--Nuevo tipo de dato DATE-->
-            <label for="FNacimiento">Fecha de Nacimiento:</label>
-            <input type="date" id="FNacimiento" required>
-            <br>
-            <!--======================================================================-->
-            <!--TIPO de dato EMAIL-->
-            <label for="Correo">Correo Electronico:</label>
-            <input type="email" id="Correo"placeholder="paulina@ejemplo.com" required>
-            <br>
-            <!--======================================================================-->
+    <!-- MENÚ LATERAL (IZQUIERDA) -->
+    <nav class="sidebar">
+        <div class="sidebar-brand">
+            <h1>MecaGest</h1>
+            <p>Gestión Mecánica</p>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#registro" class="active"><i class="fa-solid fa-user-plus"></i> Registro</a></li>
+            <li><a href="#contacto"><i class="fa-solid fa-address-book"></i> Contacto</a></li>
+            <li><a href="#acceso"><i class="fa-solid fa-lock"></i> Acceso</a></li>
+            <li><a href="#ubicacion"><i class="fa-solid fa-location-dot"></i> Ubicación</a></li>
+            <li><a href="#perfil"><i class="fa-solid fa-user-gear"></i> Perfil y Fiscal</a></li>
+            <li><a href="#citas"><i class="fa-solid fa-calendar-check"></i> Citas</a></li>
+            <li><a href="#recursos"><i class="fa-solid fa-wrench"></i> Recursos</a></li>
+        </ul>
+    </nav>
 
-        </fieldset>
-        <br>
-        <fieldset>
-            <legend>Datos de contacto</legend>
-            <label for="email">Correo Electronico</label>
-            <input type="email" id="Correo"placeholder="paulina@ejemplo.com" required>
-            <br>
-            <!---->
-            <label for="numTel">Número Telefonico</label>
-            <input type="tel" id="numTel" placeholder="(+52)7641296177">
-            <br>
-            <!---->
-            <label for="horarioContacto">Favor de Contactar en el Horario:</label>
-            <input type="time" id="horarioContactoInicio" placeholder="09:00">
-            <input type="time" id="horarioContactoFin" placeholder="18:00">
-            <br>
-            <h4>Redes sociales</h4>
-            <label for="urlFacebook"> Facebook</label>
-            <input type="checkbox" id="socialNetworks">
-            <input type="url" placeholder="https://www.facebook.com/userName">
-            <br>
-            <label for="urlFacebook"> Facebook</label>
-            <input type="checkbox" id="socialNetworks">
-            <input type="url" placeholder="https://www.linkdin.com/userName">
-            <br>
-            <label for="urlFacebook"> Facebook</label>
-            <input type="checkbox" id="socialNetworks">
-            <input type="url" placeholder="https://www.watsapp.com/userName">
-        </fieldset>
-        <br>
-        <fieldset>
-            <legend>Datos de Acceso</legend>
-        <label for="usuario" >Usuario:</label>
-        <input type="text"  id="usuario" placeholder="paulina_rodriguez">
-        <br>
-        <!--Nuevo tipo de dato PASSWORD-->
-        <label for="comtrasena">Contrasena:</label>
-        <input type="password" id="contrasena" placeholder="**********" required>
-        <br>
-        <label for="confirmarCont">Confirmar Contrasena</label>
-        <input type="password"  id="confirmarCont" placeholder="*********" required>
-        <br>
-        </fieldset>
-        <br>
-       <fieldset>
-       <legend>Datos de Ubicacion</legend>
-       <label for="direccion">Direccion: </label>
-       <input type="text" id="direccion" placeholder="Calle, Número, Colonia, Ciudad, Estado, CP">
-       <label for="pais">País: </label>
-       <input type="text" id="pais" placeholder="México">
-       <label for="estado">Estado: </label>
-       <input type="text" id="estado" placeholder="Ciudad de México">
-       <label for="ciudad">Ciudad: </label>
-       <input type="text" id="ciudad" placeholder="Ciudad de México">
-       <label for="codigoPostal">Código Postal: </label>
-       <input type="text" id="codigoPostal" placeholder="01234">
-       </fieldset>
-       
-       
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="main-wrapper">
+        
+        <header class="top-header">
+            <h2>Formulario de Registro de Usuarios</h2>
+            <p>Complete los campos necesarios para registrarse en la plataforma MecaGest</p>
+        </header>
 
-       
+        <main>
+            <form action="" method="POST">
+                
+                <!-- GRID EN 2 COLUMNAS -->
+                <div class="grid-container">
 
-       
-    <br>
-    <!--======================================================================-->
-    <!--Se avilitara con JS para agregarle la funcion para peticion a base de datos -->
-    <input type="checkbox" id="validado">
-    Acepto los términos y condiciones del uso de la plataforma
-    <br></br>
-    <input type="submit" value="Enviar solicitud" disabled> <!---Limpia los campos del formulario -->
-    <input type="reset" value="Limpiar Formulario"> <!--Evia una peticion a la base de datos -->
-        </form>
+                    <!-- SECCIÓN 1: Datos Personales -->
+                    <fieldset id="registro">
+                        <legend>Datos Personales</legend>
+                        
+                        <div class="form-group">
+                            <label for="Titulo">Título:</label>
+                            <select id="Titulo">
+                                <option value="Sr">Sr.</option>
+                                <option value="Sra">Sra.</option>
+                                <option value="Srta">Srta.</option>
+                                <option value="Dr">Dr.</option>
+                                <option value="Dra">Dra.</option>
+                            </select>
+                        </div>
 
-        <h4>Estos son para futuro uso, no son parte del Formulario de registro de usuarios</h4>
-        <form>
-        <fieldset>
-    <legend>Visualización de citas por:</legend>
-    <label>Por favor, elige el filtro:</label>
-    <br>
+                        <div class="form-group">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" id="nombre" placeholder="Paulina" required>
+                        </div>
 
-    <!-- Opciones con eventos JavaScript para alternar entre mes y semana -->
-    <input type="radio" value="month" name="appoimentFilter" id="appoimentByMonth" checked 
-           onchange="toggleFiltroCitas()">
-    <label for="appoimentByMonth">Mes</label>
+                        <div class="form-group">
+                            <label for="APaterno">Apellido Paterno:</label>
+                            <input type="text" id="APaterno" placeholder="Rodríguez" required>
+                        </div>
 
-    <input type="radio" value="week" name="appoimentFilter" id="appoimentByWeek" 
-           onchange="toggleFiltroCitas()">
-    <label for="appoimentByWeek">Semana</label>
-    <br><br>
+                        <div class="form-group">
+                            <label for="Genero">Género:</label>
+                            <select id="Genero">
+                                <option value="F">Femenino</option>
+                                <option value="M">Masculino</option>
+                                <option value="X">Prefiero no decirlo</option>
+                            </select>
+                        </div>
 
-    <!-- Selector de Mes (activo por defecto) -->
-    <input type="month" id="inputMesCitas">
-    
-    <!-- Selector de Semana (deshabilitado por defecto) -->
-    <input type="week" id="inputSemanaCitas" disabled>
-    <br><br>
+                        <!-- VALIDACIÓN DE EDAD CON JAVASCRIPT -->
+                        <div class="form-group">
+                            <label for="FNacimiento">Fecha de Nacimiento:</label>
+                            <input type="date" id="FNacimiento" required onchange="validarEdad()">
+                            <span id="mensajeEdad" class="mensaje-edad"></span>
+                        </div>
 
-    <button type="button" id="verCitas">Ver citas</button>
-</fieldset>
+                        <div class="form-group">
+                            <label for="Correo">Correo Electrónico:</label>
+                            <input type="email" id="Correo" placeholder="paulina@ejemplo.com" required>
+                        </div>
+                    </fieldset>
 
-<!-- Script para manejar la activación/desactivación de las opciones -->
-<script>
-    function toggleFiltroCitas() {
-        const esPorMes = document.getElementById('appoimentByMonth').checked;
-        const inputMes = document.getElementById('inputMesCitas');
-        const inputSemana = document.getElementById('inputSemanaCitas');
+                    <!-- SECCIÓN 2: Datos de Contacto -->
+                    <fieldset id="contacto">
+                        <legend>Datos de Contacto</legend>
 
-        if (esPorMes) {
-            inputMes.disabled = false;
-            inputSemana.disabled = true;
-        } else {
-            inputMes.disabled = true;
-            inputSemana.disabled = false;
+                        <div class="form-group">
+                            <label for="numTel">Número Telefónico:</label>
+                            <input type="tel" id="numTel" placeholder="(+52) 764 129 6177">
+                        </div>
+
+                        <div class="form-group">
+                            <label>Horario Preferido de Contacto:</label>
+                            <div class="inline-group">
+                                <input type="time" id="horarioContactoInicio" value="09:00">
+                                <span>a</span>
+                                <input type="time" id="horarioContactoFin" value="18:00">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Redes Sociales:</label>
+                            
+                            <div class="checkbox-group" style="margin-bottom: 8px;">
+                                <input type="checkbox" id="checkFb">
+                                <input type="url" placeholder="Facebook URL: https://facebook.com/usuario">
+                            </div>
+                            
+                            <div class="checkbox-group" style="margin-bottom: 8px;">
+                                <input type="checkbox" id="checkIn">
+                                <input type="url" placeholder="LinkedIn URL: https://linkedin.com/in/usuario">
+                            </div>
+
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="checkWa">
+                                <input type="url" placeholder="WhatsApp URL: https://wa.me/numero">
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- SECCIÓN 3: Datos de Acceso -->
+                    <fieldset id="acceso">
+                        <legend>Datos de Acceso</legend>
+
+                        <div class="form-group">
+                            <label for="usuario">Usuario:</label>
+                            <input type="text" id="usuario" placeholder="paulina_rodriguez">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contrasena">Contraseña:</label>
+                            <input type="password" id="contrasena" placeholder="••••••••" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmarCont">Confirmar Contraseña:</label>
+                            <input type="password" id="confirmarCont" placeholder="••••••••" required>
+                        </div>
+                    </fieldset>
+
+                    <!-- SECCIÓN 4: Datos de Ubicación -->
+                    <fieldset id="ubicacion">
+                        <legend>Datos de Ubicación</legend>
+
+                        <div class="form-group">
+                            <label for="direccion">Dirección:</label>
+                            <input type="text" id="direccion" placeholder="Calle, Número, Colonia">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pais">País:</label>
+                            <input type="text" id="pais" placeholder="México">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="estado">Estado:</label>
+                            <input type="text" id="estado" placeholder="Puebla">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ciudad">Ciudad:</label>
+                            <input type="text" id="ciudad" placeholder="Xicotepec">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="codigoPostal">Código Postal:</label>
+                            <input type="text" id="codigoPostal" placeholder="73080">
+                        </div>
+                    </fieldset>
+
+                    <!-- CONTROLES -->
+                    <div class="full-width" style="background-color: var(--fondo-tarjeta); padding: 20px; border-radius: 12px; border: 1px solid var(--color-borde);">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="validado">
+                            <label for="validado" style="margin: 0;">Acepto los términos y condiciones del uso de la plataforma</label>
+                        </div>
+                        <div class="btn-container">
+                            <input type="submit" value="Enviar solicitud">
+                            <input type="reset" value="Limpiar Formulario">
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+
+            <!-- FUNCIONALIDADES FUTURAS -->
+            <h4 class="section-title"><i class="fa-solid fa-folder-plus"></i> Funcionalidades Adicionales</h4>
+
+            <div class="grid-container">
+
+                <fieldset id="perfil">
+                    <legend>Configuración de Perfil y Fiscal</legend>
+                    <div class="form-group">
+                        <label for="userPhoto">Foto de Perfil:</label>
+                        <input type="file" id="userPhoto" accept="image/*">
+                    </div>
+                    <div class="form-group">
+                        <label for="rfc">RFC:</label>
+                        <input type="text" id="rfc" maxlength="13" placeholder="RAHMXXXXXXXXX">
+                    </div>
+                    <div class="form-group">
+                        <label for="fiscalSituation">Situación Fiscal (PDF):</label>
+                        <input type="file" id="fiscalSituation" accept=".pdf">
+                    </div>
+                </fieldset>
+
+                <fieldset id="citas">
+                    <legend>Solicitud de Cita</legend>
+                    <div class="form-group">
+                        <label for="dateAppoiment">Fecha y Hora:</label>
+                        <input type="datetime-local" id="dateAppoiment">
+                    </div>
+                    <div class="form-group">
+                        <label for="locations">Sucursal:</label>
+                        <input list="locationList" id="locations" placeholder="Busca tu sucursal">
+                        <datalist id="locationList">
+                            <option value="Xicotepec, Centro"></option>
+                            <option value="Xicotepec, El Tabacal"></option>
+                            <option value="San Isidro, Tierra Negra"></option>
+                            <option value="Huauchinango, Petrolera 1"></option>
+                        </datalist>
+                    </div>
+                    <div class="form-group">
+                        <label for="descriptionText">Descripción del Servicio:</label>
+                        <textarea id="descriptionText" placeholder="Detalles del problema..."></textarea>
+                    </div>
+                </fieldset>
+
+                <fieldset id="recursos" class="full-width">
+                    <legend>Solicitud de Herramientas y Refacciones</legend>
+                    <div class="form-group">
+                        <label>Categoría:</label>
+                        <div class="inline-group">
+                            <label><input type="radio" name="resourceCategory" value="refaccion"> Refacción</label>
+                            <label><input type="radio" name="resourceCategory" value="tool"> Herramienta</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="toolName">Pieza / Herramienta:</label>
+                        <select id="toolName">
+                            <optgroup label="Piezas de Motor">
+                                <option value="bujia">Bujía</option>
+                                <option value="filtro_aceite">Filtro de aceite</option>
+                            </optgroup>
+                            <optgroup label="Herramientas Especializadas">
+                                <option value="scanner_obd2">Escáner automotriz OBD-II</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </fieldset>
+
+                <fieldset class="full-width">
+                    <legend>Visualización e Historial de Citas</legend>
+                    <div class="form-group">
+                        <label>Filtrar por:</label>
+                        <div class="inline-group">
+                            <label><input type="radio" value="month" name="appoimentFilter" id="appoimentByMonth" checked onchange="toggleFiltroCitas()"> Mes</label>
+                            <label><input type="radio" value="week" name="appoimentFilter" id="appoimentByWeek" onchange="toggleFiltroCitas()"> Semana</label>
+                        </div>
+                    </div>
+                    <div class="inline-group" style="max-width: 400px; margin-bottom: 20px;">
+                        <input type="month" id="inputMesCitas">
+                        <input type="week" id="inputSemanaCitas" disabled>
+                        <button type="button" id="verCitas">Cargar</button>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Cliente / Vehículo</th>
+                                    <th>Descripción</th>
+                                    <th>Fecha</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td><strong>Mauricio Mejía</strong><br><small>VW Jetta 2020</small></td>
+                                    <td>Cambio de bujías. Unidad lista para entrega.</td>
+                                    <td>10/Oct/2026</td>
+                                    <td><span class="badge badge-success">Atendida</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><strong>Marco A. Ramírez</strong><br><small>Renault Duster 2014</small></td>
+                                    <td>Revisión del cuerpo de aceleración.</td>
+                                    <td>16/Oct/2026</td>
+                                    <td><span class="badge badge-warning">Programada</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </fieldset>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- SCRIPT DE JAVASCRIPT -->
+    <script>
+        // FUNCIONALIDAD 1: Imprimir "Hola Mundo" en la consola de depuración al cargar la página
+        console.log("Hola Mundo");
+
+        // FUNCIONALIDAD 2: Validar la fecha de nacimiento y mostrar si es mayor o menor de edad
+        function validarEdad() {
+            const inputFecha = document.getElementById('FNacimiento').value;
+            const mensajeElemento = document.getElementById('mensajeEdad');
+
+            if (!inputFecha) {
+                mensajeElemento.textContent = "";
+                return;
+            }
+
+            const fechaNacimiento = new Date(inputFecha);
+            const hoy = new Date();
+
+            let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
+            const diferenciaMeses = hoy.getMonth() - fechaNacimiento.getMonth();
+
+            // Ajustar si aún no ha cumplido años en el año actual
+            if (diferenciaMeses < 0 || (diferenciaMeses === 0 && hoy.getDate() < fechaNacimiento.getDate())) {
+                edad--;
+            }
+
+            if (edad >= 18) {
+                mensajeElemento.textContent = `✓ El usuario es Mayor de edad (${edad} años)`;
+                mensajeElemento.className = "mensaje-edad mayor-edad";
+            } else {
+                mensajeElemento.textContent = `⚠ El usuario es Menor de edad (${edad} años)`;
+                mensajeElemento.className = "mensaje-edad menor-edad";
+            }
         }
-    }
-</script>
-    <br>
-    <!--======================================================================-->
-    <!--Visualizacion de citas-->
-    <form>
-        <legend>Visualizacion de citas</legend>
-        <br>
-    <label for="mesCita">Fecha de la cita:</label>
-    <input type="month" id="mesCita">
-    <button type="verCita">mostrar</button>
-    </form>
-    <br>
-    <h4>las citas se programadas para el mes elegido es :</h4>
-    <br>
-    <table style="border: 1px solid black">
-    <tr>
-        <th style="border: 1px solid black">No.</th>
-        <th style="border: 1px solid black">Nombre</th>
-        <th style="border: 1px solid black">Descripción</th>
-        <th style="border: 1px solid black">Fecha Programada</th>
-        <th style="border: 1px solid black">Estatus Actual</th>
-    </tr>
-    <tr>
-        <td style="border: 1px solid black">1.</td>
-        <td style="border: 1px solid black">Cita de entrega de unidad reparada con el cliente: Mauricio Mejía, Unidad: Volkswagen, Jetta 2020</td>
-        <td style="border: 1px solid black">Se realizo un cambio de bujías, la unidad esta lista para entrega</td>
-        <td style="border: 1px solid black">10 de Octubre de 2026</td>
-        <td style="border: 1px solid black">Atendida</td>
-    </tr>
 
-    <tr>
-        <td style="border: 1px solid black">2.</td>
-        <td style="border: 1px solid black">Cita de valoración con el cliente: Marco A. Ramírez, Unidad: Renault, Duster 2014</td>
-        <td style="border: 1px solid black">El cliente solicita una revisión del cuerpo de aceleración de la unidad para posible mantenimiento correctivo.</td>
-        <td style="border: 1px solid black">16 de Octubre de 2026</td>
-        <td style="border: 1px solid black">Programada</td>
-    </tr>
-    <tr>
-        <td style="border: 1px solid black">3.</td>
-        <td style="border: 1px solid black">Cita de revisión con el cliente: Mauricio Mejía, Unidad: Volkswagen, Jetta 2020</td>
-        <td style="border: 1px solid black">A la unidad se le hicieron cambio de bujías, pero el cliente reporta un sonido extraño.</td>
-        <td style="border: 1px solid black">17 de Octubre de 2026</td>
-        <td style="border: 1px solid black">Programada</td>
-    </tr>
-    <tr>
-        <td style="border: 1px solid black">4.</td>
-        <td style="border: 1px solid black">Cita de valoración con la cliente: Alejandra Romero, Unidad: Toyota, Hilux 2012</td>
-        <td style="border: 1px solid black">El cliente solicita una revisión del cuerpo de aceleración de la unidad para posible mantenimiento correctivo.</td>
-        <td style="border: 1px solid black">16 de Octubre de 2026</td>
-        <td style="border: 1px solid black">Cancelada</td>
-    </tr>
-    <tr>
-        <td style="border: 1px solid black">5.</td>
-        <td style="border: 1px solid black">Cita de valoración con la cliente: Alejandra Romero, Unidad: Toyota, Hilux 2012</td>
-        <td style="border: 1px solid black">El cliente solicita una revisión del cuerpo de aceleración de la unidad para posible mantenimiento correctivo.</td>
-        <td style="border: 1px solid black">20 de Octubre de 2026</td>
-        <td style="border: 1px solid black">Reprogramada</td>
-    </tr>
-    </table>
+        // Cambio entre filtro mes/semana
+        function toggleFiltroCitas() {
+            const esPorMes = document.getElementById('appoimentByMonth').checked;
+            const inputMes = document.getElementById('inputMesCitas');
+            const inputSemana = document.getElementById('inputSemanaCitas');
 
-    </main>
-    
-    <fieldset>
-        <legend>Configuracion de mi cuenta/perdil: </legend>
-        <label for="userPhoto">foto de perfil: </label>
-        <input type="file" id="userPhoto" accept="image/*">
-        
-        <br>
-        <input type="image" id="buttonNext" src="assets/next.gif" alt="Siguente" width="50" height="50">
-        <input type="hidden" id="userId" value="25XXXX">
-       </fieldset>
-
-       <fieldset>
-        <legend>datos fiscales</legend>
-        <label for="rfc">registro federal de causentes (RFC): </label>
-        <input type="text" id="rfc" maxlength="13" placeholder="RAHMXXXXXXXX">
-        <br>
-        <label for="fiscalSituation">constancia de situacion fiscal: </label>
-        <input type="file" id="fiscalSituation" accept=".pdf">
-        <input type="hidden" id="userId" value="25XXXX">
-       </fieldset> 
-        
-       <fieldset>
-        <legend>Solicitud de cita: </legend>
-        <label for="dateAppoiment">fecha de la cita:</label>
-        <input type="datetime-local" id="dateAppoiment">
-        <br>
-
-        <label for="locations">Eligw la sucursal: </label>
-        <input list="locationList" placheolder="Busca tu sucursal preferida">
-        <datalist id="loationList">
-            <option>Xicotepec, Centro</option>
-            <option>Xicotepec, el Tabacal</option>
-            <option>san Isidrio, Tierra negra</option>
-            <option>Necaxa, Canaditas</option>
-            <option>Huauchinango, Petrolera 1</option>
-        </datalist>
-        <br>
-        <label for="descriptionText">Descripcion de la cita: </label>
-        <textarea id="descriptionText"></textarea>
-        <br> 
-       </fieldset>
-
-       <fieldset>
-        <legend>Solicitud de Herramientas y refacciones para servicio mecanico: </legend>
-        <label> for="resourceCategory">Categoria de recurso </label>
-        <input type="radio" id="resourceRefaction" name="resourceCategory" value="refacrion">refaction
-        <input type="radio" id="resourceTool" name="resourceCategory" value="tool">Herramienta
-        <br>
-        <label for="resourceCategoryPieza">Pieza</label>
-        <label for="toolName">Elige la pieza:</label> 
-        <select>
-            <optgroup label="piezas de Motor">
-                <option valuye="bujia">Bujia</option>
-                <option value="filtro_aceite">Filtro de aceite</option>
-                <option value="banda_distribucion">Banda de distribucion</option>
-            </optgroup>
-            <optgroup label="piezas de Transmision">
-                <option valuye="disco_ambrague">Disco de embrague</option>
-                <option value="collarin">Collarin de embrague</option>
-                <option value="junta_homocintetica">Junta homocintetica</option>
-                <option value="semieje">Semieje de transmision</option> 
-            </optgroup>
-            <optgroup label="Piezas de suspension">
-                <option value="amortiguador">Amortiguador</option>
-                <option value="rotula">Rotula de suspension</option>
-            </optiongroup>
-            <optgroup label="llaves y herramientas especializadas">
-            <optgroup>
-                <option value="llave_combinada">Llave combinada</option>
-                <option value="llave_torx">Llave torx</option>
-                <option value="llave_dinamometrica">Llave dinamometrica</option>
-                <option value="extractor_poleas">Extractor de poleas</option>
-                <option value="compresor_resortes">Compresor de resortes</option>
-                <option value="scanner_obd2">Escaner automotriz OBD-II</option>
-            </optgroup>
-        </select>
-
-        <form>
-        <legend>Visualizacion de citas</legend>
-        <br>
-    <label for="mesCita">Fecha de la cita:</label>
-    <input type="month" id="mesCita">
-    <button type="verCita">mostrar</button>
-    </form>
-    <br>
-    <h4>las citas se programadas para el mes elegido es :</h4>
-    <br>
-    <table style="border: 1px solid black">
-    <tr>
-        <th style="border: 1px solid black">No.</th>
-        <th style="border: 1px solid black">Nombre</th>
-        <th style="border: 1px solid black">Descripción</th>
-        <th style="border: 1px solid black">Fecha Programada</th>
-        <th style="border: 1px solid black">Estatus Actual</th>
-    </tr>
-    <tr>
-        <td style="border: 1px solid black">1.</td>
-        <td style="border: 1px solid black">Cita de entrega de unidad reparada con el cliente: Mauricio Mejía, Unidad: Volkswagen, Jetta 2020</td>
-        <td style="border: 1px solid black">Se realizo un cambio de bujías, la unidad esta lista para entrega</td>
-        <td style="border: 1px solid black">10 de Octubre de 2026</td>
-        <td style="border: 1px solid black">Atendida</td>
-    </tr>
-
-    <tr>
-        <td style="border: 1px solid black">2.</td>
-        <td style="border: 1px solid black">Cita de valoración con el cliente: Marco A. Ramírez, Unidad: Renault, Duster 2014</td>
-        <td style="border: 1px solid black">El cliente solicita una revisión del cuerpo de aceleración de la unidad para posible mantenimiento correctivo.</td>
-        <td style="border: 1px solid black">16 de Octubre de 2026</td>
-        <td style="border: 1px solid black">Programada</td>
-    </tr>
-    <tr>
-        <td style="border: 1px solid black">3.</td>
-        <td style="border: 1px solid black"></td>
-        <td style="border: 1px solid black">A la unidad se le hicieron cambio de bujías, pero el cliente reporta un sonido extraño.</td>
-        <td style="border: 1px solid black">17 de Octubre de 2026</td>
-        <td style="border: 1px solid black">Programada</td>
-    </tr>
-    <tr>
-       </fieldset>
-
-       
+            if (esPorMes) {
+                inputMes.disabled = false;
+                inputSemana.disabled = true;
+            } else {
+                inputMes.disabled = true;
+                inputSemana.disabled = false;
+            }
+        }
+    </script>
 </body>
 </html>
