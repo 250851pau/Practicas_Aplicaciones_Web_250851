@@ -46,7 +46,6 @@ body{font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--c
 .stepper-description{color:#64748b;font-size:.9rem;margin-top:6px}
 .sections-counter{font-size:.8rem;font-weight:700;letter-spacing:1.5px;color:#64748b}
 .stepper-track{display:flex;justify-content:space-between;position:relative;max-width:900px;margin:0 auto;padding:10px 0}
-/* Cada paso mide 25%: su centro está al 12.5%. La línea va de centro a centro. */
 .stepper-line-bg,.stepper-line-progress{position:absolute;top:35px;left:12.5%;height:4px;z-index:1}
 .stepper-line-bg{right:12.5%;background:var(--color-borde)}
 .stepper-line-progress{width:0;background:var(--color-secundario);transition:width .4s ease;box-shadow:0 0 8px rgba(249,115,22,.4)}
@@ -84,8 +83,8 @@ input[type=reset],button.btn-gris{background:#64748b}
 table{width:100%;border-collapse:separate;border-spacing:0;background:var(--fondo-tarjeta);border-radius:8px;overflow:hidden;border:1px solid var(--color-borde)}
 th,td{padding:12px 15px;text-align:left;border-bottom:1px solid var(--color-borde)}
 th{background:var(--fondo-input);color:var(--color-texto);font-weight:600;text-transform:uppercase;font-size:.75rem}
-.badge{padding:4px 8px;border-radius:12px;font-size:.8rem;font-weight:600}
-.badge-success{background:#dcfce7;color:#166534}.badge-warning{background:#fef9c3;color:#854d0e}
+.badge{padding:4px 8px;border-radius:12px;font-size:.8rem;font-weight:600;white-space:nowrap}
+.badge-success{background:#dcfce7;color:#166534}.badge-warning{background:#fef9c3;color:#854d0e}.badge-danger{background:#fee2e2;color:#991b1b}
 h4.section-title{color:var(--color-secundario);margin:40px 0 20px;font-size:1.3rem;display:flex;align-items:center;gap:10px}
 .config-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
 .config-card{background:var(--fondo-input);border:1px solid var(--color-borde);border-radius:8px;padding:15px}
@@ -95,19 +94,18 @@ h4.section-title{color:var(--color-secundario);margin:40px 0 20px;font-size:1.3r
 @media(max-width:768px){.stepper-header{flex-direction:column;gap:10px}.stepper-line-bg,.stepper-line-progress{display:none}.stepper-track{flex-wrap:wrap;gap:15px}.sidebar{flex-direction:column;padding:10px}.stepper-section{position:relative;top:0}}
 fieldset:disabled{opacity:.5;cursor:not-allowed}
 .zona-bloqueada{opacity:.5}
-/* Capa de aviso sobre secciones bloqueadas */
 .bloqueable{position:relative}
 .overlay-bloqueo{position:absolute;inset:0;z-index:5;cursor:not-allowed;display:none;border-radius:12px}
 .bloqueable.bloqueado .overlay-bloqueo{display:block}
 .toast-bloqueo{position:fixed;bottom:30px;left:50%;transform:translate(-50%,20px);background:var(--color-secundario);color:#fff;padding:12px 22px;border-radius:10px;font-weight:600;font-size:.95rem;box-shadow:0 6px 20px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:all .3s;z-index:2000;max-width:90%;text-align:center}
 .toast-bloqueo.visible{opacity:1;transform:translate(-50%,0)}
-/* ===== OJITO DE CONTRASEÑA ===== */
+/* OJITO */
 .campo-pass{position:relative}
 .campo-pass input{padding-right:48px}
 button.ojo{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;padding:6px 8px;font-size:1.1rem;line-height:1}
 button.ojo:hover{filter:none;transform:translateY(-50%)}
 
-/* ===== SEGUNDO MENÚ (SUBMENÚ) Y VISTAS ===== */
+/* SEGUNDO MENÚ Y VISTAS */
 [hidden]{display:none!important}
 .submenu{position:sticky;top:88px;z-index:950;display:flex;gap:8px;padding:8px 30px;background:var(--fondo-tarjeta);border-bottom:1px solid var(--color-borde);box-shadow:0 4px 10px rgba(0,0,0,.06);overflow-x:auto}
 .submenu .sub-item{display:flex;align-items:center;gap:8px;background:transparent;color:var(--color-texto);padding:10px 18px;border-radius:8px;white-space:nowrap;font-size:.9rem}
@@ -116,12 +114,27 @@ button.ojo:hover{filter:none;transform:translateY(-50%)}
 .main-wrapper{scroll-margin-top:var(--alto-menus,130px)}
 @media(min-width:769px){.stepper-section{top:calc(var(--alto-menus,130px) + 10px)}}
 input[type=number]{width:100%;padding:12px 14px;border:1px solid var(--color-borde);border-radius:8px;font:inherit;background:var(--fondo-input);color:var(--color-texto)}
+/* Contenido de las vistas */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:15px;margin-bottom:25px}
+.kpi{background:var(--fondo-tarjeta);border:1px solid var(--color-borde);border-left:5px solid var(--color-secundario);border-radius:12px;padding:16px}
+.kpi strong{display:block;font-size:1.8rem;line-height:1.2;color:var(--color-azul-medio)}
+.kpi span{font-size:.8rem;color:#64748b;font-weight:600}
+.cards-citas{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:15px;margin-top:5px}
+.cita-card{background:var(--fondo-input);border:1px solid var(--color-borde);border-radius:10px;padding:15px;display:flex;flex-direction:column;gap:6px}
+.cita-card .fecha{font-weight:700;color:var(--color-secundario)}
+.cita-card small{color:#64748b}
+.acciones{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+button.mini{padding:5px 10px;font-size:.75rem;border-radius:6px}
+button.mini.ok{background:#16a34a}button.mini.no{background:#dc2626}
+.vacio{text-align:center;color:#64748b;padding:18px}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+@media(max-width:600px){.grid-2{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <nav class="sidebar">
-    <div class="sidebar-brand"><h1>MecaGest</h1><p>Gestión Mecánica</p></div>
+    <div class="sidebar-brand"><h1 id="brandNombre">MecaGest</h1><p id="brandLema">Gestión Mecánica</p></div>
     <ul class="sidebar-menu">
         <li><a href="#registro" class="active"><i class="fa-solid fa-user-plus"></i> Registro</a></li>
         <li><a href="#contacto"><i class="fa-solid fa-address-book"></i> Contacto</a></li>
@@ -150,8 +163,8 @@ input[type=number]{width:100%;padding:12px 14px;border:1px solid var(--color-bor
             </div>
             <span class="hero-tagline">PLATAFORMA DE GESTIÓN AUTOMOTRIZ</span>
             <h1 class="hero-title">MecaGest <span>Desktop</span></h1>
-            <p class="hero-subtitle">Registro de nuevos usuarios</p>
-            <p class="hero-description">Completa tus datos para solicitar una cuenta. Explora también los distintos controles nativos de HTML5 en nuestro laboratorio de demostración.</p>
+            <p class="hero-subtitle" id="heroSubtitle">Registro de nuevos usuarios</p>
+            <p class="hero-description" id="heroDesc">Completa tus datos para solicitar una cuenta. Explora también los distintos controles nativos de HTML5 en nuestro laboratorio de demostración.</p>
             <div class="hero-pills">
                 <span class="pill">HTML5 semántico</span>
                 <span class="pill">CSS puro</span>
@@ -163,6 +176,10 @@ input[type=number]{width:100%;padding:12px 14px;border:1px solid var(--color-bor
 </header>
 
 <div class="main-wrapper">
+<main>
+
+<!-- ================= VISTA 1: REGISTRO DE USUARIOS ================= -->
+<section class="vista" id="vista-registro" data-vista="registro">
 
     <section class="stepper-section">
         <div class="stepper-header">
@@ -197,7 +214,6 @@ input[type=number]{width:100%;padding:12px 14px;border:1px solid var(--color-bor
         </div>
     </section>
 
-    <main>
         <form action="" method="POST">
             <div class="single-column-container">
 
@@ -286,148 +302,217 @@ input[type=number]{width:100%;padding:12px 14px;border:1px solid var(--color-bor
             </div>
         </form>
 
-        <h4 class="section-title"><i class="fa-solid fa-sliders"></i> Ajustes de Interfaz y Apariencia</h4>
-
-        <fieldset id="config-interfaz">
-            <legend>Personalización Visual</legend>
-            <div class="config-grid">
-                <div class="config-card">
-                    <div class="form-group" style="margin:0;">
-                        <label for="fontSizeControl">Tamaño de letra: <strong id="fontSizeVal">16px</strong></label>
-                        <input type="range" id="fontSizeControl" min="13" max="22" value="16" oninput="cambiarTamanoLetra(this.value)">
-                        <small style="color:#64748b;display:block;margin-top:5px;">Desliza para encoger o agrandar el texto del sistema.</small>
-                    </div>
-                </div>
-
-                <div class="config-card">
-                    <div class="form-group" style="margin:0;">
-                        <label for="themeSelect">Tema visual de la pantalla:</label>
-                        <select id="themeSelect" onchange="cambiarTemaVisual(this.value)">
-                            <option value="default">Claro (Predeterminado)</option>
-                            <option value="dark">Modo Oscuro</option>
-                            <option value="contrast">Alto Contraste</option>
-                        </select>
-                        <small style="color:#64748b;display:block;margin-top:5px;">Adapta los colores para descanso visual.</small>
-                    </div>
-                </div>
-
-                <div class="config-card">
-                    <div class="form-group">
-                        <label for="colorPrimario">Color de la interfaz:</label>
-                        <input type="color" id="colorPrimario" value="#0f2752" class="color-input" oninput="cambiarColor('primario', this.value)">
-                    </div>
-                    <div class="form-group">
-                        <label for="colorAcento">Color de acento:</label>
-                        <input type="color" id="colorAcento" value="#f97316" class="color-input" oninput="cambiarColor('acento', this.value)">
-                    </div>
-                    <div class="form-group" style="margin:0;">
-                        <label for="colorFuente">Color de la fuente:</label>
-                        <input type="color" id="colorFuente" value="#334155" class="color-input" oninput="cambiarColor('fuente', this.value)">
-                    </div>
-                    <button type="button" class="btn-gris" onclick="resetearColores()" style="margin-top:12px;">Restablecer colores</button>
-                </div>
-            </div>
-        </fieldset>
-
-        <h4 class="section-title"><i class="fa-solid fa-user-gear"></i> Configuración de la Cuenta</h4>
-
-        <fieldset id="cuenta">
-            <legend>Mi Cuenta</legend>
-            <div class="avatar-row">
-                <div class="avatar" id="avatarPreview"><i class="fa-solid fa-user"></i></div>
-                <div style="flex:1;min-width:220px;">
-                    <label for="userPhoto">Foto de perfil:</label>
-                    <input type="file" id="userPhoto" accept="image/*" onchange="previsualizarFoto(this)">
-                    <button type="button" class="btn-gris" onclick="quitarFoto()" style="margin-top:10px;">Quitar foto</button>
-                </div>
-            </div>
-            <div class="form-group"><label for="cuentaNombre">Nombre para mostrar:</label><input type="text" id="cuentaNombre" placeholder="Paulina Rodríguez"></div>
-            <div class="form-group"><label for="cuentaCorreo">Correo de la cuenta:</label><input type="email" id="cuentaCorreo" placeholder="paulina@ejemplo.com"></div>
-            <div class="form-group"><label for="cuentaPass">Nueva contraseña:</label><input type="password" id="cuentaPass" placeholder="••••••••"></div>
-            <div class="checkbox-group">
-                <input type="checkbox" id="cuentaNotif" checked>
-                <label for="cuentaNotif" style="margin:0;">Recibir notificaciones de mis citas por correo</label>
-            </div>
-            <div class="btn-container">
-                <button type="button" onclick="alert('Cambios de cuenta guardados (demostración)')">Guardar cambios</button>
-            </div>
-        </fieldset>
-
-        <h4 class="section-title"><i class="fa-solid fa-folder-plus"></i> Funcionalidades Adicionales</h4>
-
-        <div class="single-column-container">
-
-            <fieldset id="perfil">
-                <legend>Configuración Fiscal</legend>
-                <div class="form-group"><label for="rfc">RFC:</label><input type="text" id="rfc" maxlength="13" placeholder="RAHMXXXXXXXXX"></div>
-                <div class="form-group"><label for="fiscalSituation">Situación Fiscal (PDF):</label><input type="file" id="fiscalSituation" accept=".pdf"></div>
-            </fieldset>
-
-            <fieldset id="citas">
-                <legend>Solicitud de Cita</legend>
-                <div class="form-group"><label for="dateAppoiment">Fecha y Hora:</label><input type="datetime-local" id="dateAppoiment"></div>
-                <div class="form-group">
-                    <label for="locations">Sucursal:</label>
-                    <input list="locationList" id="locations" placeholder="Busca tu sucursal">
-                    <datalist id="locationList">
-                        <option value="Xicotepec, Centro"></option>
-                        <option value="Xicotepec, El Tabacal"></option>
-                        <option value="San Isidro, Tierra Negra"></option>
-                        <option value="Huauchinango, Petrolera 1"></option>
-                    </datalist>
-                </div>
-                <div class="form-group"><label for="descriptionText">Descripción del Servicio:</label><textarea id="descriptionText" placeholder="Detalles del problema..."></textarea></div>
-            </fieldset>
-
-            <fieldset id="recursos">
-                <legend>Solicitud de Herramientas y Refacciones</legend>
-                <div class="form-group">
-                    <label>Categoría:</label>
-                    <div class="inline-group">
-                        <label><input type="radio" name="resourceCategory" value="refaccion"> Refacción</label>
-                        <label><input type="radio" name="resourceCategory" value="tool"> Herramienta</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="toolName">Pieza / Herramienta:</label>
-                    <select id="toolName">
-                        <optgroup label="Piezas de Motor">
-                            <option value="bujia">Bujía</option>
-                            <option value="filtro_aceite">Filtro de aceite</option>
-                        </optgroup>
-                        <optgroup label="Herramientas Especializadas">
-                            <option value="scanner_obd2">Escáner automotriz OBD-II</option>
-                        </optgroup>
-                    </select>
-                </div>
-            </fieldset>
-
-            <fieldset>
-                <legend>Visualización e Historial de Citas</legend>
-                <div class="form-group">
-                    <label>Filtrar por:</label>
-                    <div class="inline-group">
-                        <label><input type="radio" value="month" name="appoimentFilter" id="appoimentByMonth" checked onchange="toggleFiltroCitas()"> Mes</label>
-                        <label><input type="radio" value="week" name="appoimentFilter" id="appoimentByWeek" onchange="toggleFiltroCitas()"> Semana</label>
-                    </div>
-                </div>
-                <div class="inline-group" style="max-width:400px;margin-bottom:20px;">
-                    <input type="month" id="inputMesCitas">
-                    <input type="week" id="inputSemanaCitas" disabled>
-                    <button type="button" id="verCitas">Cargar</button>
-                </div>
-                <div class="table-responsive">
-                    <table>
-                        <thead><tr><th>No.</th><th>Cliente / Vehículo</th><th>Descripción</th><th>Fecha</th><th>Estado</th></tr></thead>
-                        <tbody>
-                            <tr><td>1</td><td><strong>Mauricio Mejía</strong><br><small>VW Jetta 2020</small></td><td>Cambio de bujías. Unidad lista para entrega.</td><td>10/Oct/2026</td><td><span class="badge badge-success">Atendida</span></td></tr>
-                            <tr><td>2</td><td><strong>Marco A. Ramírez</strong><br><small>Renault Duster 2014</small></td><td>Revisión del cuerpo de aceleración.</td><td>16/Oct/2026</td><td><span class="badge badge-warning">Programada</span></td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </fieldset>
+        <h4 class="section-title"><i class="fa-solid fa-users"></i> Usuarios registrados</h4>
+        <div class="kpis"><div class="kpi"><strong id="kpiUsuarios">0</strong><span>Solicitudes registradas</span></div></div>
+        <div class="table-responsive">
+            <table>
+                <thead><tr><th>No.</th><th>Nombre</th><th>Usuario</th><th>Correo</th><th>Ciudad</th><th>Registro</th><th></th></tr></thead>
+                <tbody id="tbodyUsuarios"></tbody>
+            </table>
         </div>
-    </main>
+</section>
+
+<!-- ================= VISTA 2: PRÓXIMAS CITAS ================= -->
+<section class="vista" id="vista-citas" data-vista="citas" hidden>
+    <div class="kpis">
+        <div class="kpi"><strong id="kpiProgramadas">0</strong><span>Citas programadas</span></div>
+        <div class="kpi"><strong id="kpiAtendidas">0</strong><span>Citas atendidas</span></div>
+        <div class="kpi"><strong id="kpiCanceladas">0</strong><span>Citas canceladas</span></div>
+        <div class="kpi"><strong id="kpiProxima" style="font-size:1.1rem">—</strong><span>Siguiente cita</span></div>
+    </div>
+
+    <div class="single-column-container">
+        <fieldset id="proximas">
+            <legend>Próximas Citas</legend>
+            <div class="cards-citas" id="cardsCitas"></div>
+        </fieldset>
+
+        <fieldset id="citas">
+            <legend>Solicitud de Cita</legend>
+            <div class="grid-2">
+                <div class="form-group"><label for="citaCliente">Cliente:</label><input type="text" id="citaCliente" placeholder="Nombre del cliente"></div>
+                <div class="form-group"><label for="citaVehiculo">Vehículo:</label><input type="text" id="citaVehiculo" placeholder="Marca, modelo y año"></div>
+            </div>
+            <div class="form-group"><label for="dateAppoiment">Fecha y Hora:</label><input type="datetime-local" id="dateAppoiment"></div>
+            <div class="form-group">
+                <label for="locations">Sucursal:</label>
+                <input list="locationList" id="locations" placeholder="Busca tu sucursal">
+                <datalist id="locationList">
+                    <option value="Xicotepec, Centro"></option>
+                    <option value="Xicotepec, El Tabacal"></option>
+                    <option value="San Isidro, Tierra Negra"></option>
+                    <option value="Huauchinango, Petrolera 1"></option>
+                </datalist>
+            </div>
+            <div class="form-group"><label for="descriptionText">Descripción del Servicio:</label><textarea id="descriptionText" placeholder="Detalles del problema..."></textarea></div>
+            <div class="btn-container"><button type="button" id="btnAgendar"><i class="fa-solid fa-calendar-plus"></i> Agendar cita</button></div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Visualización e Historial de Citas</legend>
+            <div class="form-group">
+                <label>Filtrar por:</label>
+                <div class="inline-group">
+                    <label><input type="radio" value="month" name="appoimentFilter" id="appoimentByMonth" checked onchange="toggleFiltroCitas()"> Mes</label>
+                    <label><input type="radio" value="week" name="appoimentFilter" id="appoimentByWeek" onchange="toggleFiltroCitas()"> Semana</label>
+                </div>
+            </div>
+            <div class="inline-group" style="max-width:400px;margin-bottom:20px;">
+                <input type="month" id="inputMesCitas">
+                <input type="week" id="inputSemanaCitas" disabled>
+                <button type="button" id="verCitas">Cargar</button>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead><tr><th>No.</th><th>Cliente / Vehículo</th><th>Descripción</th><th>Fecha</th><th>Estado</th><th>Acciones</th></tr></thead>
+                    <tbody id="tbodyCitas"></tbody>
+                </table>
+            </div>
+        </fieldset>
+    </div>
+</section>
+
+<!-- ================= VISTA 3: CONFIGURACIÓN ================= -->
+<section class="vista" id="vista-config" data-vista="config" hidden>
+
+    <h4 class="section-title" style="margin-top:0"><i class="fa-solid fa-store"></i> Datos del Taller</h4>
+    <fieldset id="taller">
+        <legend>Información de la Empresa</legend>
+        <div class="grid-2">
+            <div class="form-group"><label for="tallerNombre">Nombre del taller:</label><input type="text" id="tallerNombre" placeholder="MecaGest"></div>
+            <div class="form-group"><label for="tallerLema">Lema o giro:</label><input type="text" id="tallerLema" placeholder="Gestión Mecánica"></div>
+        </div>
+        <div class="btn-container" style="margin-top:0"><button type="button" id="btnTaller">Aplicar datos del taller</button></div>
+    </fieldset>
+
+    <h4 class="section-title"><i class="fa-solid fa-sliders"></i> Ajustes de Interfaz y Apariencia</h4>
+
+    <fieldset id="config-interfaz">
+        <legend>Personalización Visual</legend>
+        <div class="config-grid">
+            <div class="config-card">
+                <div class="form-group" style="margin:0;">
+                    <label for="fontSizeControl">Tamaño de letra: <strong id="fontSizeVal">16px</strong></label>
+                    <input type="range" id="fontSizeControl" min="13" max="22" value="16" oninput="cambiarTamanoLetra(this.value)">
+                    <small style="color:#64748b;display:block;margin-top:5px;">Desliza para encoger o agrandar el texto del sistema.</small>
+                </div>
+            </div>
+
+            <div class="config-card">
+                <div class="form-group" style="margin:0;">
+                    <label for="themeSelect">Tema visual de la pantalla:</label>
+                    <select id="themeSelect" onchange="cambiarTemaVisual(this.value)">
+                        <option value="default">Claro (Predeterminado)</option>
+                        <option value="dark">Modo Oscuro</option>
+                        <option value="contrast">Alto Contraste</option>
+                    </select>
+                    <small style="color:#64748b;display:block;margin-top:5px;">Adapta los colores para descanso visual.</small>
+                </div>
+            </div>
+
+            <div class="config-card">
+                <div class="form-group">
+                    <label for="colorPrimario">Color de la interfaz:</label>
+                    <input type="color" id="colorPrimario" value="#0f2752" class="color-input" oninput="cambiarColor('primario', this.value)">
+                </div>
+                <div class="form-group">
+                    <label for="colorAcento">Color de acento:</label>
+                    <input type="color" id="colorAcento" value="#f97316" class="color-input" oninput="cambiarColor('acento', this.value)">
+                </div>
+                <div class="form-group" style="margin:0;">
+                    <label for="colorFuente">Color de la fuente:</label>
+                    <input type="color" id="colorFuente" value="#334155" class="color-input" oninput="cambiarColor('fuente', this.value)">
+                </div>
+                <button type="button" class="btn-gris" onclick="resetearColores()" style="margin-top:12px;">Restablecer colores</button>
+            </div>
+        </div>
+    </fieldset>
+
+    <h4 class="section-title"><i class="fa-solid fa-user-gear"></i> Configuración de la Cuenta</h4>
+
+    <fieldset id="cuenta">
+        <legend>Mi Cuenta</legend>
+        <div class="avatar-row">
+            <div class="avatar" id="avatarPreview"><i class="fa-solid fa-user"></i></div>
+            <div style="flex:1;min-width:220px;">
+                <label for="userPhoto">Foto de perfil:</label>
+                <input type="file" id="userPhoto" accept="image/*" onchange="previsualizarFoto(this)">
+                <button type="button" class="btn-gris" onclick="quitarFoto()" style="margin-top:10px;">Quitar foto</button>
+            </div>
+        </div>
+        <div class="form-group"><label for="cuentaNombre">Nombre para mostrar:</label><input type="text" id="cuentaNombre" placeholder="Paulina Rodríguez"></div>
+        <div class="form-group"><label for="cuentaCorreo">Correo de la cuenta:</label><input type="email" id="cuentaCorreo" placeholder="paulina@ejemplo.com"></div>
+        <div class="form-group"><label for="cuentaPass">Nueva contraseña:</label><input type="password" id="cuentaPass" placeholder="••••••••"></div>
+        <div class="checkbox-group">
+            <input type="checkbox" id="cuentaNotif" checked>
+            <label for="cuentaNotif" style="margin:0;">Recibir notificaciones de mis citas por correo</label>
+        </div>
+        <div class="btn-container">
+            <button type="button" onclick="alert('Cambios de cuenta guardados (demostración)')">Guardar cambios</button>
+        </div>
+    </fieldset>
+
+    <h4 class="section-title"><i class="fa-solid fa-file-invoice"></i> Facturación</h4>
+    <fieldset id="perfil">
+        <legend>Configuración Fiscal</legend>
+        <div class="form-group"><label for="rfc">RFC:</label><input type="text" id="rfc" maxlength="13" placeholder="RAHMXXXXXXXXX"></div>
+        <div class="form-group"><label for="fiscalSituation">Situación Fiscal (PDF):</label><input type="file" id="fiscalSituation" accept=".pdf"></div>
+    </fieldset>
+</section>
+
+<!-- ================= VISTA 4: SALIDAS DE ALMACÉN ================= -->
+<section class="vista" id="vista-almacen" data-vista="almacen" hidden>
+    <div class="kpis">
+        <div class="kpi"><strong id="kpiArticulos">0</strong><span>Artículos en catálogo</span></div>
+        <div class="kpi"><strong id="kpiPiezas">0</strong><span>Unidades en stock</span></div>
+        <div class="kpi"><strong id="kpiSalidas">0</strong><span>Salidas registradas</span></div>
+        <div class="kpi"><strong id="kpiBajo">0</strong><span>Con stock bajo</span></div>
+    </div>
+
+    <div class="single-column-container">
+        <fieldset id="recursos">
+            <legend>Solicitud de Herramientas y Refacciones</legend>
+            <div class="form-group">
+                <label>Categoría:</label>
+                <div class="inline-group">
+                    <label><input type="radio" name="resourceCategory" value="refaccion" checked> Refacción</label>
+                    <label><input type="radio" name="resourceCategory" value="tool"> Herramienta</label>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div class="form-group"><label for="toolName">Pieza / Herramienta:</label><select id="toolName"></select></div>
+                <div class="form-group"><label for="salidaCant">Cantidad:</label><input type="number" id="salidaCant" min="1" value="1"></div>
+            </div>
+            <div class="grid-2">
+                <div class="form-group"><label for="salidaResp">Responsable (mecánico):</label><input type="text" id="salidaResp" placeholder="Nombre de quien retira"></div>
+                <div class="form-group"><label for="salidaMotivo">Motivo / Orden de servicio:</label><input type="text" id="salidaMotivo" placeholder="Ej. Cita de Marco A. Ramírez"></div>
+            </div>
+            <div class="btn-container"><button type="button" id="btnSalida"><i class="fa-solid fa-dolly"></i> Registrar salida</button></div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Inventario Actual</legend>
+            <div class="table-responsive">
+                <table>
+                    <thead><tr><th>Artículo</th><th>Categoría</th><th>Stock</th><th>Mínimo</th><th>Estado</th><th>Reabastecer</th></tr></thead>
+                    <tbody id="tbodyInventario"></tbody>
+                </table>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Historial de Salidas</legend>
+            <div class="table-responsive">
+                <table>
+                    <thead><tr><th>Fecha</th><th>Artículo</th><th>Cant.</th><th>Responsable</th><th>Motivo</th></tr></thead>
+                    <tbody id="tbodySalidas"></tbody>
+                </table>
+            </div>
+        </fieldset>
+    </div>
+</section>
+
+</main>
 </div>
 
 <script>
@@ -438,7 +523,6 @@ const pasosConfig = [
     { id: 'ubicacion', step: 4, title: 'Datos de ubicación' }
 ];
 
-// La línea va de centro a centro (75% del ancho de la pista)
 const lineProgressWidths = { 1: '0%', 2: '25%', 3: '50%', 4: '75%' };
 
 function actualizarPasos(n) {
@@ -463,6 +547,7 @@ function irAlPaso(id) {
 }
 
 window.addEventListener('scroll', () => {
+    if (document.getElementById('vista-registro').hidden) return;
     const pos = window.scrollY + 350;
     pasosConfig.forEach(c => {
         const sec = document.getElementById(c.id);
@@ -496,7 +581,7 @@ function resetearColores() {
 }
 
 function cambiarTemaVisual(tema) {
-    resetearColores(); // los colores personalizados tienen prioridad sobre el tema
+    resetearColores();
     document.body.classList.remove('theme-dark', 'theme-contrast');
     if (tema === 'dark') document.body.classList.add('theme-dark');
     else if (tema === 'contrast') document.body.classList.add('theme-contrast');
@@ -545,6 +630,7 @@ function toggleFiltroCitas() {
     document.getElementById('inputMesCitas').disabled = !porMes;
     document.getElementById('inputSemanaCitas').disabled = porMes;
 }
+
 // ---------- Desbloqueo progresivo de secciones ----------
 const PASOS_FORM = [
     { id: 'registro',  campos: ['nombre', 'APaterno', 'FNacimiento', 'Correo'] },
@@ -562,7 +648,6 @@ const NOMBRES_PASOS = {
     ubicacion: 'Datos de Ubicación'
 };
 
-const idsPasos = PASOS_FORM.map(p => p.id);
 let nivelMax = 1; // 1-4 = pasos desbloqueados, 5 = todo desbloqueado
 
 function pasoCompleto(paso) {
@@ -573,25 +658,30 @@ function pasoCompleto(paso) {
     return camposOk && (!paso.extra || paso.extra());
 }
 
-// ---------- Aviso al tocar secciones bloqueadas ----------
+// ---------- Avisos (toast) ----------
 const toast = document.createElement('div');
 toast.className = 'toast-bloqueo';
 document.body.appendChild(toast);
 let toastTimer;
 
-function mostrarAviso() {
-    const pendiente = PASOS_FORM.find(p => !pasoCompleto(p));
-    toast.textContent = pendiente
-        ? `🔒 Llena primero los campos de «${NOMBRES_PASOS[pendiente.id]}»`
-        : '🔒 Llena los campos anteriores primero';
+function aviso(texto) {
+    toast.textContent = texto;
     toast.classList.add('visible');
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => toast.classList.remove('visible'), 2500);
 }
 
+function mostrarAviso() {
+    const pendiente = PASOS_FORM.find(p => !pasoCompleto(p));
+    aviso(pendiente
+        ? `🔒 Llena primero los campos de «${NOMBRES_PASOS[pendiente.id]}»`
+        : '🔒 Llena los campos anteriores primero');
+}
+
 const zonaEnvio = document.querySelector('.btn-container').parentElement;
 
-[...document.querySelectorAll('fieldset'), zonaEnvio].forEach(el => {
+// El bloqueo progresivo solo aplica al formulario de registro (pasos + zona de envío)
+[...PASOS_FORM.map(p => document.getElementById(p.id)), zonaEnvio].forEach(el => {
     el.classList.add('bloqueable');
     const capa = document.createElement('div');
     capa.className = 'overlay-bloqueo';
@@ -611,13 +701,6 @@ function actualizarBloqueos() {
         const f = document.getElementById(p.id);
         f.disabled = bloquear;
         f.classList.toggle('bloqueado', bloquear);
-    });
-
-    document.querySelectorAll('fieldset').forEach(f => {
-        if (!idsPasos.includes(f.id)) {
-            f.disabled = restoBloqueado;
-            f.classList.toggle('bloqueado', restoBloqueado);
-        }
     });
 
     zonaEnvio.querySelectorAll('input, button').forEach(e => e.disabled = restoBloqueado);
@@ -663,10 +746,265 @@ document.querySelectorAll('.ojo').forEach(btn => {
     });
 });
 
-// Al limpiar el formulario, también se limpia el aviso
 document.querySelector('form').addEventListener('reset', () => {
     setTimeout(validarCoincidencia, 0);
 });
+
+/* =====================================================
+   SEGUNDO MENÚ: navegación entre vistas + datos
+   ===================================================== */
+const VISTAS = {
+    registro: { sub: 'Registro de nuevos usuarios', desc: 'Completa tus datos para solicitar una cuenta. Explora también los distintos controles nativos de HTML5 en nuestro laboratorio de demostración.', nav: '#registro' },
+    citas:    { sub: 'Próximas citas', desc: 'Agenda, consulta y administra las citas de servicio de tus clientes.', nav: '#citas' },
+    config:   { sub: 'Configuración', desc: 'Personaliza la apariencia, tu cuenta, los datos del taller y la facturación.', nav: '#config-interfaz' },
+    almacen:  { sub: 'Salidas de almacén', desc: 'Controla el inventario de refacciones y herramientas y registra cada salida.', nav: '#recursos' }
+};
+
+function mostrarVista(nombre) {
+    document.querySelectorAll('.vista').forEach(v => v.hidden = v.dataset.vista !== nombre);
+    document.querySelectorAll('.sub-item').forEach(b => b.classList.toggle('activo', b.dataset.vista === nombre));
+    document.querySelectorAll('.sidebar-menu a').forEach(a => a.classList.toggle('active', a.getAttribute('href') === VISTAS[nombre].nav));
+    document.getElementById('heroSubtitle').textContent = VISTAS[nombre].sub;
+    document.getElementById('heroDesc').textContent = VISTAS[nombre].desc;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.querySelectorAll('.sub-item').forEach(b => b.addEventListener('click', () => mostrarVista(b.dataset.vista)));
+
+// El menú superior también cambia de vista y baja a la sección
+document.querySelectorAll('.sidebar-menu a').forEach(a => {
+    a.addEventListener('click', e => {
+        e.preventDefault();
+        const destino = document.querySelector(a.getAttribute('href'));
+        if (!destino) return;
+        const vista = destino.closest('.vista');
+        if (vista.hidden) mostrarVista(vista.dataset.vista);
+        document.querySelectorAll('.sidebar-menu a').forEach(x => x.classList.toggle('active', x === a));
+        setTimeout(() => destino.scrollIntoView({ behavior: 'smooth', block: 'center' }), 60);
+    });
+});
+
+function medirMenus() {
+    const s = document.querySelector('.sidebar'), m = document.getElementById('submenu');
+    m.style.top = s.offsetHeight + 'px';
+    document.documentElement.style.setProperty('--alto-menus', (s.offsetHeight + m.offsetHeight) + 'px');
+}
+window.addEventListener('resize', medirMenus);
+
+// ---------- Datos (se guardan en el navegador) ----------
+const POR_DEFECTO = {
+    usuarios: [],
+    citas: [
+        { id: 1, cliente: 'Mauricio Mejía', vehiculo: 'VW Jetta 2020', desc: 'Cambio de bujías. Unidad lista para entrega.', fecha: '2026-10-10T10:00', sucursal: 'Xicotepec, Centro', estado: 'atendida' },
+        { id: 2, cliente: 'Marco A. Ramírez', vehiculo: 'Renault Duster 2014', desc: 'Revisión del cuerpo de aceleración.', fecha: '2026-10-16T09:30', sucursal: 'Xicotepec, El Tabacal', estado: 'programada' },
+        { id: 3, cliente: 'Laura Gómez', vehiculo: 'Nissan Versa 2018', desc: 'Afinación mayor y cambio de filtro de aceite.', fecha: '2026-11-19T11:00', sucursal: 'Huauchinango, Petrolera 1', estado: 'programada' },
+        { id: 4, cliente: 'Carlos Ibarra', vehiculo: 'Chevrolet Aveo 2016', desc: 'Ruido al frenar, revisar balatas.', fecha: '2026-11-24T16:00', sucursal: 'San Isidro, Tierra Negra', estado: 'programada' }
+    ],
+    inventario: [
+        { id: 'bujia', nombre: 'Bujía', cat: 'refaccion', stock: 40, min: 10 },
+        { id: 'filtro_aceite', nombre: 'Filtro de aceite', cat: 'refaccion', stock: 25, min: 8 },
+        { id: 'pastillas', nombre: 'Pastillas de freno', cat: 'refaccion', stock: 12, min: 6 },
+        { id: 'scanner_obd2', nombre: 'Escáner automotriz OBD-II', cat: 'tool', stock: 3, min: 2 },
+        { id: 'torquimetro', nombre: 'Torquímetro', cat: 'tool', stock: 5, min: 2 }
+    ],
+    salidas: [],
+    taller: { nombre: 'MecaGest', lema: 'Gestión Mecánica' }
+};
+
+let datos;
+try { datos = Object.assign({}, POR_DEFECTO, JSON.parse(localStorage.getItem('mecagest') || '{}')); }
+catch (e) { datos = JSON.parse(JSON.stringify(POR_DEFECTO)); }
+
+function guardar() { try { localStorage.setItem('mecagest', JSON.stringify(datos)); } catch (e) {} }
+
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const $ = id => document.getElementById(id);
+
+function fmtFecha(iso) {
+    const d = new Date(iso);
+    return d.toLocaleDateString('es-MX', { day: '2-digit', month: 'short', year: 'numeric' }) + ' · ' +
+           d.toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit' });
+}
+
+// ---------- Vista 1: usuarios registrados ----------
+function renderUsuarios() {
+    $('kpiUsuarios').textContent = datos.usuarios.length;
+    $('tbodyUsuarios').innerHTML = datos.usuarios.length ? datos.usuarios.map((u, i) =>
+        `<tr><td>${i + 1}</td><td><strong>${esc(u.nombre)}</strong></td><td>${esc(u.usuario)}</td><td>${esc(u.correo)}</td><td>${esc(u.ciudad)}</td><td>${fmtFecha(u.registro)}</td>
+         <td><button type="button" class="mini no" data-del-user="${u.id}">Eliminar</button></td></tr>`).join('')
+        : '<tr><td colspan="7" class="vacio">Aún no hay solicitudes registradas.</td></tr>';
+}
+
+$('tbodyUsuarios').addEventListener('click', e => {
+    const id = e.target.dataset.delUser;
+    if (!id) return;
+    datos.usuarios = datos.usuarios.filter(u => String(u.id) !== id);
+    guardar(); renderUsuarios();
+});
+
+document.querySelector('form').addEventListener('submit', e => {
+    e.preventDefault();
+    if (!$('validado').checked) { aviso('Debes aceptar los términos y condiciones'); return; }
+    datos.usuarios.push({
+        id: Date.now(),
+        nombre: `${$('Titulo').value}. ${$('nombre').value.trim()} ${$('APaterno').value.trim()}`,
+        usuario: $('usuario').value.trim(),
+        correo: $('Correo').value.trim(),
+        ciudad: $('ciudad').value.trim(),
+        registro: new Date().toISOString()
+    });
+    guardar(); renderUsuarios();
+    e.target.reset();
+    $('mensajeEdad').textContent = '';
+    aviso('✓ Solicitud de cuenta registrada');
+});
+
+// ---------- Vista 2: citas ----------
+function semanaISO(d) {
+    const t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    t.setUTCDate(t.getUTCDate() + 4 - (t.getUTCDay() || 7));
+    const y = t.getUTCFullYear();
+    const w = Math.ceil(((t - Date.UTC(y, 0, 1)) / 864e5 + 1) / 7);
+    return y + '-W' + String(w).padStart(2, '0');
+}
+
+const BADGE_CITA = { atendida: 'badge-success', programada: 'badge-warning', cancelada: 'badge-danger' };
+const TXT_CITA = { atendida: 'Atendida', programada: 'Programada', cancelada: 'Cancelada' };
+
+function botonesCita(c) {
+    return c.estado === 'programada'
+        ? `<button type="button" class="mini ok" data-cita="${c.id}" data-act="atender">Atender</button><button type="button" class="mini no" data-cita="${c.id}" data-act="cancelar">Cancelar</button>`
+        : `<button type="button" class="mini btn-gris" data-cita="${c.id}" data-act="borrar">Eliminar</button>`;
+}
+
+function renderCitas() {
+    const cs = datos.citas;
+    const prog = cs.filter(c => c.estado === 'programada').sort((a, b) => a.fecha.localeCompare(b.fecha));
+    $('kpiProgramadas').textContent = prog.length;
+    $('kpiAtendidas').textContent = cs.filter(c => c.estado === 'atendida').length;
+    $('kpiCanceladas').textContent = cs.filter(c => c.estado === 'cancelada').length;
+    $('kpiProxima').textContent = prog.length ? fmtFecha((prog.find(c => new Date(c.fecha) >= new Date()) || prog[0]).fecha) : 'Sin citas';
+
+    const ahora = new Date();
+    $('cardsCitas').innerHTML = prog.length ? prog.map(c =>
+        `<div class="cita-card"><span class="fecha"><i class="fa-regular fa-clock"></i> ${fmtFecha(c.fecha)}</span>
+         <strong>${esc(c.cliente)}</strong><small>${esc(c.vehiculo)} · ${esc(c.sucursal || 'Sin sucursal')}</small>
+         <span>${esc(c.desc)}</span>
+         ${new Date(c.fecha) < ahora ? '<span class="badge badge-danger" style="align-self:flex-start">Fecha vencida</span>' : ''}
+         <div class="acciones">${botonesCita(c)}</div></div>`).join('')
+        : '<p class="vacio" style="grid-column:1/-1">No hay citas programadas.</p>';
+
+    // Historial con filtro por mes o semana
+    const porMes = $('appoimentByMonth').checked;
+    const mes = $('inputMesCitas').value, sem = $('inputSemanaCitas').value;
+    const lista = cs.filter(c => {
+        if (porMes && mes) return c.fecha.slice(0, 7) === mes;
+        if (!porMes && sem) return semanaISO(new Date(c.fecha)) === sem;
+        return true;
+    }).sort((a, b) => a.fecha.localeCompare(b.fecha));
+
+    $('tbodyCitas').innerHTML = lista.length ? lista.map((c, i) =>
+        `<tr><td>${i + 1}</td><td><strong>${esc(c.cliente)}</strong><br><small>${esc(c.vehiculo)}</small></td><td>${esc(c.desc)}</td>
+         <td>${fmtFecha(c.fecha)}</td><td><span class="badge ${BADGE_CITA[c.estado]}">${TXT_CITA[c.estado]}</span></td>
+         <td><div class="acciones">${botonesCita(c)}</div></td></tr>`).join('')
+        : '<tr><td colspan="6" class="vacio">No hay citas para el periodo seleccionado.</td></tr>';
+}
+
+$('vista-citas').addEventListener('click', e => {
+    const id = e.target.dataset.cita;
+    if (!id) return;
+    const c = datos.citas.find(x => String(x.id) === id);
+    if (e.target.dataset.act === 'atender') c.estado = 'atendida';
+    if (e.target.dataset.act === 'cancelar') c.estado = 'cancelada';
+    if (e.target.dataset.act === 'borrar') datos.citas = datos.citas.filter(x => x !== c);
+    guardar(); renderCitas();
+});
+
+$('verCitas').addEventListener('click', renderCitas);
+
+$('btnAgendar').addEventListener('click', () => {
+    const cliente = $('citaCliente').value.trim(), fecha = $('dateAppoiment').value;
+    if (!cliente || !$('citaVehiculo').value.trim() || !fecha) { aviso('Escribe el cliente, el vehículo y la fecha y hora'); return; }
+    datos.citas.push({
+        id: Date.now(), cliente, vehiculo: $('citaVehiculo').value.trim(),
+        desc: $('descriptionText').value.trim() || 'Sin descripción', fecha,
+        sucursal: $('locations').value.trim(), estado: 'programada'
+    });
+    guardar(); renderCitas();
+    ['citaCliente', 'citaVehiculo', 'dateAppoiment', 'locations', 'descriptionText'].forEach(id => $(id).value = '');
+    aviso('✓ Cita agendada');
+});
+
+// ---------- Vista 3: datos del taller ----------
+function aplicarTaller() {
+    $('brandNombre').textContent = datos.taller.nombre || 'MecaGest';
+    $('brandLema').textContent = datos.taller.lema || '';
+    document.title = (datos.taller.nombre || 'MecaGest') + ' - Sistema de Gestión Mecánica';
+}
+
+$('btnTaller').addEventListener('click', () => {
+    datos.taller = { nombre: $('tallerNombre').value.trim() || 'MecaGest', lema: $('tallerLema').value.trim() };
+    guardar(); aplicarTaller();
+    aviso('✓ Datos del taller actualizados');
+});
+
+// ---------- Vista 4: almacén ----------
+function llenarSelectAlmacen() {
+    const cat = document.querySelector('input[name=resourceCategory]:checked').value;
+    $('toolName').innerHTML = datos.inventario.filter(i => i.cat === cat)
+        .map(i => `<option value="${i.id}">${esc(i.nombre)} (stock: ${i.stock})</option>`).join('');
+}
+
+function renderAlmacen() {
+    const inv = datos.inventario;
+    $('kpiArticulos').textContent = inv.length;
+    $('kpiPiezas').textContent = inv.reduce((s, i) => s + i.stock, 0);
+    $('kpiSalidas').textContent = datos.salidas.length;
+    $('kpiBajo').textContent = inv.filter(i => i.stock <= i.min).length;
+
+    $('tbodyInventario').innerHTML = inv.map(i => {
+        const est = i.stock === 0 ? ['badge-danger', 'Agotado'] : i.stock <= i.min ? ['badge-warning', 'Stock bajo'] : ['badge-success', 'Disponible'];
+        return `<tr><td><strong>${esc(i.nombre)}</strong></td><td>${i.cat === 'tool' ? 'Herramienta' : 'Refacción'}</td><td>${i.stock}</td><td>${i.min}</td>
+                <td><span class="badge ${est[0]}">${est[1]}</span></td>
+                <td><button type="button" class="mini" data-repo="${i.id}">+10</button></td></tr>`;
+    }).join('');
+
+    $('tbodySalidas').innerHTML = datos.salidas.length ? datos.salidas.map(s =>
+        `<tr><td>${fmtFecha(s.fecha)}</td><td>${esc(s.nombre)}</td><td>${s.cant}</td><td>${esc(s.resp)}</td><td>${esc(s.motivo || '—')}</td></tr>`).join('')
+        : '<tr><td colspan="5" class="vacio">Aún no hay salidas registradas.</td></tr>';
+
+    llenarSelectAlmacen();
+}
+
+document.querySelectorAll('input[name=resourceCategory]').forEach(r => r.addEventListener('change', llenarSelectAlmacen));
+
+$('tbodyInventario').addEventListener('click', e => {
+    const id = e.target.dataset.repo;
+    if (!id) return;
+    datos.inventario.find(i => i.id === id).stock += 10;
+    guardar(); renderAlmacen();
+});
+
+$('btnSalida').addEventListener('click', () => {
+    const item = datos.inventario.find(i => i.id === $('toolName').value);
+    const cant = parseInt($('salidaCant').value, 10), resp = $('salidaResp').value.trim();
+    if (!item) { aviso('Selecciona una pieza o herramienta'); return; }
+    if (!(cant > 0)) { aviso('La cantidad debe ser mayor a 0'); return; }
+    if (!resp) { aviso('Escribe quién retira el artículo'); return; }
+    if (cant > item.stock) { aviso(`Stock insuficiente: solo quedan ${item.stock}`); return; }
+    item.stock -= cant;
+    datos.salidas.unshift({ fecha: new Date().toISOString(), nombre: item.nombre, cant, resp, motivo: $('salidaMotivo').value.trim() });
+    guardar(); renderAlmacen();
+    $('salidaCant').value = 1; $('salidaResp').value = ''; $('salidaMotivo').value = '';
+    aviso('✓ Salida registrada');
+});
+
+// ---------- Arranque ----------
+$('tallerNombre').value = datos.taller.nombre;
+$('tallerLema').value = datos.taller.lema;
+aplicarTaller();
+renderUsuarios(); renderCitas(); renderAlmacen();
+medirMenus();
 </script>
 </body>
 </html>
